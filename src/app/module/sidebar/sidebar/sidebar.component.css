@@ -1,0 +1,6 @@
+.DashBoard{
+
+  height: calc(100vh - 70px);
+  box-shadow: 28px 0px 27px -7px rgba(0,0,0,0.1);
+ 
+}

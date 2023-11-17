@@ -1,0 +1,16 @@
+.home-wrapper{
+
+display: grid;
+grid-template-columns: 1fr 1fr;
+align-items: center;
+gap: 30px;
+justify-content: center;
+}
+.chart-container{
+  width: 100%;
+  height: 500px !important;
+}
+#doughnutChart
+{
+  width: 80%;
+}
