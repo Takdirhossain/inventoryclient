@@ -86,7 +86,9 @@ export class HomeComponent implements OnInit {
         },
         animation: {
           duration: 3000,
-        }
+        },
+        bezierCurve: false
+
       } as ChartOptions,
     });
   }
