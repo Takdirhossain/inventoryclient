@@ -1,11 +1,76 @@
-<div class="home-wrapper ">
-  <div class="chart">
-    <h6>Last 7 Days vs previous 7 days</h6>
-    <canvas   class="chart-container" id="MyChart"></canvas>
+<div>
+  <div class="shortinfo">
+    <div class="stocksort rounded">
+      <h1>In Stock</h1>
+      <h2>100</h2>
+    </div>
+    <div class="salesTodysort rounded">
+      <h1>Today sales</h1>
+      <h2>30000</h2>
+    </div>
+    <div class="monthselshort rounded">
+      <h1>This Month </h1>
+      <h2>100000</h2>
+    </div>
+    <div class="duemarketsort rounded">
+      <h1>Total Due </h1>
+      <h2>90000</h2>
+    </div>
   </div>
+  <div class="home-wrapper">
+    <div class="chart">
+      <h6>Last 7 Days vs previous 7 days</h6>
+      <canvas class="chart-container" id="MyChart"></canvas>
+    </div>
 
-<div class="chart">
-  <canvas   class="" id="doughnutChart"></canvas>
+    <div class="chart">
+      <canvas class="" id="doughnutChart"></canvas>
+    </div>
+    <div class="chart">
+      <canvas class="stockchart" id="stockChart"></canvas>
+    </div>
+    <div>
+      <h3>Recent Customer</h3>
+      <div class=" d-flex flex-column gap-3">
+        <div class="d-flex align-items-center gap-2 recentcustomer">
+          <img class="profile rounded" src="assets/profile1.jpg" alt="" />
+          <span>
+            <h6>Jhon doe</h6>
+            <span>Location: Usa </span>
+          </span>
+        </div>
+        <div class="d-flex align-items-center gap-2 recentcustomer">
+          <img class="profile rounded" src="assets/profile2.jpg" alt="" />
+          <span>
+            <h6>Jhon doe</h6>
+            <span>Location: Usa </span>
+          </span>
+        </div>
+        <div class="d-flex align-items-center gap-2 recentcustomer">
+          <img class="profile rounded" src="assets/profile1.jpg" alt="" />
+          <span>
+            <h6>Jhon doe</h6>
+            <span>Location: Usa </span>
+          </span>
+        </div>
+        <div class="d-flex align-items-center gap-2 recentcustomer">
+          <img class="profile rounded" src="assets/profile2.jpg" alt="" />
+          <span>
+            <h6>Jhon doe</h6>
+            <span>Location: Usa </span>
+          </span>
+        </div>
+        <div class="d-flex align-items-center gap-2 recentcustomer">
+          <img class="profile rounded" src="assets/profile2.jpg" alt="" />
+          <span>
+            <h6>Jhon doe</h6>
+            <span>Location: Usa </span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <app-recentsels></app-recentsels>
+  </div>
 </div>
-</div>
-

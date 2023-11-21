@@ -1,6 +1,11 @@
 .DashBoard{
-
-  height: calc(100vh - 70px);
+  background-color: #F9FBFF;
+  height: 100vh;
   box-shadow: 28px 0px 27px -7px rgba(0,0,0,0.1);
- 
+ position: fixed;
+ width: 20VW;
+ margin-top: -70px;
+}
+.item-wrapper{
+  margin-top: 70px;
 }

@@ -1,0 +1,47 @@
+.add-customer-form{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+
+}
+.namewrapper{
+  width: 100%;
+}
+input{
+  text-indent: 20px;
+
+}
+.nameinput{
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #F4F5F9;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+input:focus{
+  outline: none;
+}
+.location
+{
+  width: 100%;
+  border: none;
+  background-color: #F4F5F9;
+  border-radius: 5px;
+  height: 40px;
+  margin-top: 10px;
+}
+.form-control-main{
+  border: 1px solid #D1D4DD;
+  padding: 30px 40px 30px 40px;
+}
+.add-button{
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+
+}
+.button{
+padding: 10px 30px 10px 30px;
+}

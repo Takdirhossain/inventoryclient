@@ -9,19 +9,55 @@ import { ChartOptions } from 'chart.js/dist/types/index';
 export class HomeComponent implements OnInit {
   chart: any;
   chart2: any;
+  chart3: any;
 
   DATA_COUNT = 5;
   NUMBER_CFG = { count: this.DATA_COUNT, min: 0, max: 100 };
   ngOnInit() {
     this.createChart();
     this.createdoughnutChart();
+    this.createStockChart()
+  }
+  createStockChart() {
+    this.chart = new Chart('stockChart', {
+      type: 'bar',
+      data: {
+        labels: ['', '', '', ''],
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Total',
+            data: ['20', '12', '25', '30'],
+            backgroundColor: ['#FF9FB4', ],
+            borderColor: ['white'],
+            borderWidth: 3,
+          },
+          {
+            type: 'bar',
+            label: 'Total',
+            data: ['25', '8', '11', '35'],
+            backgroundColor: ['#82CDFF', ],
+            borderColor: ['white'],
+            borderWidth: 3,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 3000,
+        },
+
+      },
+    });
   }
 
   createdoughnutChart() {
     this.chart = new Chart('doughnutChart', {
       type: 'pie',
       data: {
-        labels: ['12KG', '25KG', '35KG', '45KG'],
+        labels: ['', '', '', ''],
         datasets: [
           {
             label: 'Total',
