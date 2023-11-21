@@ -1,9 +1,15 @@
 .home-wrapper {
   display: grid;
-  grid-template-columns: 2fr 1fr;
 
+  grid-template-columns: 2fr 1fr;
   gap: 30px;
   justify-content: center;
+}
+.chart{
+  background-color: white;
+  padding: 10px 16px;
+  border-radius: 7px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .chart-container {
   width: 100%;
@@ -16,6 +22,10 @@
   gap: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+background-color: white;
+padding: 10px 16px;
+box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+border-radius: 7px;
 }
 .stocksort {
   display: flex;
@@ -63,11 +73,37 @@
 {
   width: 50px;
 height: 50px;
+object-fit: cover;
 }
 .recentcustomer{
-  background-color: #F9FBFF;
+  background-color: var(--main-bg-color);
+  border-radius: 8px;
+}
+.recentcustomer:hover{
+  background-color: white;
 }
 .stockchart{
   width: 100%;
 
+}
+.piechart{
+  display: flex;
+  
+  justify-content: center;
+}
+.recetnsels{
+  background-color: white;
+  padding: 10px 16px;
+  border-radius: 7px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.first-chart{
+  background-color: lavender;
+}
+.btn-outline-primary{
+  border: none;
+  color: none;
+}
+.btn-outline-primary:hover{
+ background-color: var(--table-head-bg-color);
 }

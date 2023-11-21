@@ -17,19 +17,48 @@
       <h2>90000</h2>
     </div>
   </div>
-  <div class="home-wrapper">
-    <div class="chart">
-      <h6>Last 7 Days vs previous 7 days</h6>
+  <div class="home-wrapper pt-4">
+    <div class="chart first-chart">
+      <div class="row">
+        <div class="col text-end">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              <i class="bi bi-three-dots"></i>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem>7Day</button>
+              <button ngbDropdownItem>15Day</button>
+              <button ngbDropdownItem>30Day</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <canvas class="chart-container" id="MyChart"></canvas>
     </div>
 
-    <div class="chart">
-      <canvas class="" id="doughnutChart"></canvas>
+    <div class="chart piechart">
+      <div>
+        <div class="row">
+          <div class="col text-end">
+            <div ngbDropdown class="d-inline-block">
+              <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                <i class="bi bi-three-dots"></i>
+              </button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem>7Day</button>
+                <button ngbDropdownItem>15Day</button>
+                <button ngbDropdownItem>30Day</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <canvas class="" id="doughnutChart"></canvas>
+      </div>
     </div>
     <div class="chart">
       <canvas class="stockchart" id="stockChart"></canvas>
     </div>
-    <div>
+    <div class="chart">
       <h3>Recent Customer</h3>
       <div class=" d-flex flex-column gap-3">
         <div class="d-flex align-items-center gap-2 recentcustomer">
@@ -70,7 +99,7 @@
       </div>
     </div>
   </div>
-  <div>
+  <div class="mt-4 recetnsels">
     <app-recentsels></app-recentsels>
   </div>
 </div>

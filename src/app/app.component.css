@@ -1,4 +1,6 @@
 .layout{
   display: grid;
   grid-template-columns: 1fr 4fr;
+  background-color: var(--main-bg-color);
 }
+

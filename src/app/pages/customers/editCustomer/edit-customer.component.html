@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h4 class="modal-title">Update</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+<form action="">
+  <input  class="nameinput" [defaultValue]="customer.name" placeholder="Enter name" id="name"autocomplete="off" formControlName="name" />
+  <input  class="nameinput" [defaultValue]="customer.area" placeholder="Enter name" id="name"autocomplete="off" formControlName="name" />
+</form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+  <button type="button" class="update" (click)="updateCustomer()">Update</button>
+</div>

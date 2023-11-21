@@ -1,11 +1,10 @@
-import { DeleteCustomerComponent } from '../../deleteCustomer/delete-customer.component';
-import { Component, PipeTransform } from '@angular/core';
-import { DecimalPipe } from '@angular/common'; // Import DecimalPipe
-import { FormControl, NgModel } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { DecimalPipe } from '@angular/common';
+import { Component, PipeTransform, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditCustomerComponent } from '../../editCustomer/edit-customer.component';
+import { Observable, map, startWith } from 'rxjs';
+import { DeletesaleComponent } from '../deleteSales/deletesale.component';
+import { EditsalesComponent } from '../editSales/editsales.component';
 
 interface Country {
   name: string;
@@ -40,7 +39,6 @@ const COUNTRIES: Country[] = [
     population: 1409517397,
   },
 ];
-
 function search(text: string, pipe: PipeTransform): Country[] {
   return COUNTRIES.filter((country) => {
     const term = text.toLowerCase();
@@ -53,12 +51,12 @@ function search(text: string, pipe: PipeTransform): Country[] {
 }
 
 @Component({
-  selector: 'app-customers',
-  templateUrl: './customers.component.html',
-  styleUrls: ['./customers.component.css'],
-  providers: [DecimalPipe], // Add DecimalPipe to the providers array
+  selector: 'app-sales',
+  templateUrl: './sales.component.html',
+  styleUrls: ['./sales.component.css'],
+  providers: [DecimalPipe],
 })
-export class CustomersComponent {
+export class SalesComponent {
   countries$!: Observable<Country[]>;
   filter = new FormControl('', { nonNullable: true });
 
@@ -68,13 +66,12 @@ export class CustomersComponent {
       map((text) => search(text, pipe))
     );
   }
-  open(name: any) {
-    const modelRef = this.modalService.open(DeleteCustomerComponent);
-    modelRef.componentInstance.name = name;
+  deletesale(event: any) {
+    const modalRef = this.modalService.open(DeletesaleComponent);
+    modalRef.componentInstance.id = event
   }
-  editcustomer(customer: Country){
-
-    const modelRef = this.modalService.open(EditCustomerComponent)
-    modelRef.componentInstance.customer = customer;
+  editSales(event: Country) {
+    const modalRef = this.modalService.open(EditsalesComponent)
+    modalRef.componentInstance.sales = event
   }
 }

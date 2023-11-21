@@ -20,6 +20,7 @@
 
 
 
+<div class="content-area mt-5">
   <form class="pt-5">
     <div class="mb-3 row">
       <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
@@ -29,37 +30,42 @@
     </div>
   </form>
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Country</th>
-        <th scope="col">Area</th>
-        <th scope="col">Population</th>
-      </tr>
-    </thead>
-    <tbody>
-
-        <tr *ngFor="let item of countries$ | async; track item?.name; ">
-          <th scope="row"></th>
-          <td>
-            <img
-            [src]="'https://upload.wikimedia.org/wikipedia/commons/' + item.flag"
-						[alt]="'The flag of ' + item.name"
-						class="me-2"
-						style="width: 20px"
-            />
-            <ngb-highlight [result]="item.name" [term]="filter.value" />
-          </td>
-          <td><ngb-highlight [result]=" item.area | number" [term]="filter.value" /></td>
-          <td><ngb-highlight [result]=" item.population | number" [term]="filter.value" /></td>
+  <div class="customertable">
+    <table class="table table-striped">
+      <thead class="    " >
+        <tr class="">
+          <th  class="text-white tablehead"  scope="col">#</th>
+          <th  class="text-white tablehead"  scope="col">Country</th>
+          <th  class="text-white tablehead"  scope="col">Area</th>
+          <th   class="text-white tablehead" scope="col">Population</th>
+          <th class="text-white tablehead">Action</th>
         </tr>
+      </thead>
+      <tbody>
 
-        <tr>
-          <td colspan="4" style="text-align: center">No countries found</td>
-        </tr>
+          <tr *ngFor="let item of countries$ | async; track item?.name; ">
+            <th scope="row"></th>
+            <td>
+              <img
+              [src]="'https://upload.wikimedia.org/wikipedia/commons/' + item.flag"
+              [alt]="'The flag of ' + item.name"
+              class="me-2"
+              style="width: 20px"
+              />
+              <ngb-highlight [result]="item.name" [term]="filter.value" />
+            </td>
+            <td><ngb-highlight [result]=" item.area | number" [term]="filter.value" /></td>
+            <td><ngb-highlight [result]=" item.population | number" [term]="filter.value" /> </td>
+            <td class="d-flex gap-3 " ><i (click)="editcustomer(item)" role="button" class="bi bi-pencil-square"></i>  <i role="button" (click)="open(item.name)" class="bi bi-trash3-fill"></i></td>
+          </tr>
 
-    </tbody>
-  </table>
+          <tr>
+            <td colspan="5" style="text-align: center">No countries found</td>
+          </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
 
 </div>

@@ -7,4 +7,5 @@ import { NavComponent } from './module/nav/nav/nav.component';
 })
 export class AppComponent {
   title = 'client';
+ 
 }

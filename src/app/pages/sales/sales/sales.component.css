@@ -1,6 +1,6 @@
 .add-customer-form{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 
 
@@ -48,16 +48,12 @@ input:focus{
 .button{
 padding: 10px 30px 10px 30px;
 }
-.customertable{
-  border: 1px solid var(--border-color);
-  border-radius: 5px ;
-}
 .tablehead{
   background-color: var(--table-head-bg-color);
 }
 .content-area{
+  background-color: white;
+  box-shadow: var(--primary-shadow);
   padding: 10px 16px;
   border-radius: 7px;
-  background-color: white;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
