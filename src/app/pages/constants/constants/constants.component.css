@@ -1,6 +1,6 @@
 .add-customer-form{
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 
 
@@ -19,6 +19,19 @@ input{
   background-color: #F4F5F9;
   border-radius: 5px;
   margin-top: 10px;
+}
+.checkboxwrap{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.checkbox{
+
+  height: 40px;
+  border: none;
+  background-color: #F4F5F9;
+  border-radius: 5px;
+
 }
 input:focus{
   outline: none;
@@ -60,13 +73,4 @@ padding: 10px 30px 10px 30px;
   border-radius: 7px;
   background-color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-}
-.short{
-  cursor: pointer;
-}
-.report:hover{
-  background-color: var( --table-head-bg-color);
-  cursor: pointer;
-  color: white;
-  transition: 0.2s ease-in-out;
 }

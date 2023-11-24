@@ -10,6 +10,11 @@ export class HomeComponent implements OnInit {
   chart: any;
   chart2: any;
   chart3: any;
+   currentDate = new Date();
+ datePart = this.currentDate.toDateString();
+ timePart = this.currentDate.toTimeString().split(' ')[0];
+
+ result = `${this.datePart} ${this.timePart}`;
 
   DATA_COUNT = 5;
   NUMBER_CFG = { count: this.DATA_COUNT, min: 0, max: 100 };
@@ -28,17 +33,17 @@ export class HomeComponent implements OnInit {
             type: 'bar',
             label: 'Total',
             data: ['20', '12', '25', '30'],
-            backgroundColor: ['#FF9FB4', ],
+            backgroundColor: ['#9966FF', ],
             borderColor: ['white'],
-            borderWidth: 3,
+            borderWidth: 1,
           },
           {
             type: 'bar',
             label: 'Total',
             data: ['25', '8', '11', '35'],
-            backgroundColor: ['#82CDFF', ],
+            backgroundColor: ['#36A2EB', ],
             borderColor: ['white'],
-            borderWidth: 3,
+            borderWidth: 1,
           },
         ],
       },
@@ -48,7 +53,7 @@ export class HomeComponent implements OnInit {
         animation: {
           duration: 3000,
         },
-
+        backgroundColor: 'black'
       },
     });
   }
@@ -62,7 +67,7 @@ export class HomeComponent implements OnInit {
           {
             label: 'Total',
             data: ['20', '12', '25', '30'],
-            backgroundColor: ['#0bdb3f', '#cddb0b', '#db230b', '#0bdbca'],
+            backgroundColor: ['#36A2EB', '#9966FF', '#525FE1', '#0bdbca'],
             borderColor: ['white'],
             borderWidth: 3,
           },
@@ -85,21 +90,22 @@ export class HomeComponent implements OnInit {
         labels: ['10', '11', '12', '13', '14', '15', '16', '17'],
         datasets: [
           {
+
             label: 'Sales',
             data: ['10', '12', '15', '12', '15', '30', '21', '30'],
-            backgroundColor: 'blue',
-            fill: false,
+            borderColor: '#9966FF',
             pointStyle: 'circle',
-            pointRadius: 10,
+            pointRadius: 5,
             pointHoverRadius: 15,
+
           },
 
           {
             label: 'Profit',
             data: ['15', '9', '20', '21', '17', '11', '6', '9'],
-            backgroundColor: 'green',
+            borderColor: '#36A2EB',
             pointStyle: 'circle',
-            pointRadius: 10,
+            pointRadius: 5,
             pointHoverRadius: 15,
           },
         ],
@@ -119,6 +125,11 @@ export class HomeComponent implements OnInit {
           interaction: {
             intersect: false,
           },
+          tooltip: {
+            callbacks: {
+
+            }
+          }
         },
         animation: {
           duration: 3000,

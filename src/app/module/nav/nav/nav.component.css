@@ -4,8 +4,11 @@
 .nav{
   padding: 10px;
 margin-left: 20vw;
+background-color: var(--table-head-bg-color);
+box-shadow: rgba(182, 168, 168, 0.4) 0px 2px 4px, rgba(193, 192, 192, 0.3) 0px 7px 13px -3px, rgba(177, 173, 173, 0.2) 0px -3px 0px inset;
 
 }
-.navwrapper{
-
+.logo{width: 40%;}
+.user{
+cursor: pointer;
 }

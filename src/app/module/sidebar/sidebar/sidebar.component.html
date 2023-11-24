@@ -1,11 +1,12 @@
 <div class="DashBoard ">
-  <div class="d-flex flex-column align-items-center item-wrapper gap-3">
-   <div class="d-flex flex-column  gap-3">
-    <h4 [routerLink]="['dashboard']" >DashBoard</h4>
-    <h4 [routerLink]="['/customers']">Customers</h4>
-    <h4 [routerLink]="['/sales']">Sales</h4>
-    <h4>DashBoard</h4>
-    <h4>DashBoard</h4>
+  <div class="d-flex flex-column ps-5 pe-5 item-wrapper gap-3">
+   <div class="d-flex flex-column sidebarwrapper  gap-4">
+    <span class="d-flex  justify-content-between sidebariteam" [routerLink]="['dashboard']" >  <span > <i  class="bi bi-house fa-xs me-3"></i>DashBoard</span> <span><i class="bi bi-caret-right"></i></span></span>
+    <span class="d-flex  justify-content-between sidebariteam"  [routerLink]="['/customers']"> <span><i class="bi bi-people-fill fa-xs me-3"></i>Customers</span> <span><i class="bi bi-caret-right"></i></span></span>
+    <span class="d-flex  justify-content-between sidebariteam" [routerLink]="['/sales']"><span><i class="bi bi-cash-coin fa-xs me-3"></i>Sales</span> <span> <i class="bi bi-caret-right"></i></span></span>
+    <span class="d-flex  justify-content-between sidebariteam" [routerLink]="['/stock']"><span><i class="bi bi-columns-gap fa-xs me-3"></i>Stock</span> <span><i class="bi bi-caret-right"></i></span></span>
+    <span class="d-flex  justify-content-between sidebariteam" [routerLink]="['/constants']"><span><i class="bi bi-bookmarks-fill fa-xs me-3"></i>Constants</span> <span><i class="bi bi-caret-right"></i></span></span>
+    <span class="d-flex  justify-content-between sidebariteam" [routerLink]="['/profit']"><span><i class="bi bi-currency-exchange fa-sm me-3"></i>Profit</span> <span><i class="bi bi-caret-right"></i></span></span>
    </div>
   </div>
 </div>

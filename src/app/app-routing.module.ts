@@ -6,16 +6,23 @@ import { HomeComponent } from './pages/home/home/home.component';
 import { CustomersComponent } from './pages/customers/customers/customers/customers.component';
 import { SalesComponent } from './pages/sales/sales/sales.component';
 import { AuthComponent } from './pages/auth/auth/auth.component';
+import { StockComponent } from './pages/stock/stock/stock.component';
+import { ConstantsComponent } from './pages/constants/constants/constants.component';
+import { ProfitComponent } from './pages/profitlist/profit/profit.component';
+import { ReportComponent } from './pages/report/report/report.component';
 const routes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'dashboard', component: HomeComponent},
-  {path:'customers', component: CustomersComponent},
-  {path: 'sales', component: SalesComponent},
-  {path:'login', component: AuthComponent, data: { fullScreenLayout: true }, }
+  { path: '', component: HomeComponent },
+  { path: 'dashboard', component: HomeComponent },
+  { path: 'customers', component: CustomersComponent },
+  { path: 'sales', component: SalesComponent },
+  { path: 'stock', component: StockComponent },
+  { path: 'constants', component: ConstantsComponent },
+  { path: 'profit', component: ProfitComponent },
+  { path: 'report/:id', component: ReportComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes),  CommonModule],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes), CommonModule],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

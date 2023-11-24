@@ -7,6 +7,7 @@ import { map, startWith } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCustomerComponent } from '../../editCustomer/edit-customer.component';
 
+
 interface Country {
   name: string;
   flag: string;
@@ -61,6 +62,7 @@ function search(text: string, pipe: PipeTransform): Country[] {
 export class CustomersComponent {
   countries$!: Observable<Country[]>;
   filter = new FormControl('', { nonNullable: true });
+  shorintg : boolean = false
 
   constructor(pipe: DecimalPipe, private modalService: NgbModal) {
     this.countries$ = this.filter.valueChanges.pipe(
@@ -76,5 +78,14 @@ export class CustomersComponent {
 
     const modelRef = this.modalService.open(EditCustomerComponent)
     modelRef.componentInstance.customer = customer;
+  }
+  short(){
+    this.shorintg = !this.shorintg;
+  }
+  lowTOHeight(){
+   console.log(this.countries$);
+  }
+  heightToLow(){
+    console.log("height to low will call");
   }
 }

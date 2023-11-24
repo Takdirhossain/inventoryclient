@@ -1,0 +1,9 @@
+.tablehead{
+background-color: var(--table-head-bg-color);
+}
+.profit-wrapper{
+  background-color: white;
+  padding: 10px 16px;
+  border-radius: 7px;
+  box-shadow: var(--primary-shadow);
+}

@@ -16,6 +16,14 @@ import { SalesComponent } from './pages/sales/sales/sales.component';
 import { DeletesaleComponent } from './pages/sales/deleteSales/deletesale.component';
 import { EditsalesComponent } from './pages/sales/editSales/editsales.component';
 import { AuthComponent } from './pages/auth/auth/auth.component';
+import { StockComponent } from './pages/stock/stock/stock.component';
+import { EditStockComponent } from './pages/stock/edit-stock/edit-stock.component';
+import { SeleteStockComponent } from './pages/stock/selete-stock/selete-stock.component';
+import { DecimalPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { ConstantsComponent } from './pages/constants/constants/constants.component';
+import { ProfitComponent } from './pages/profitlist/profit/profit.component';
+import { ReportComponent } from './pages/report/report/report.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +38,14 @@ import { AuthComponent } from './pages/auth/auth/auth.component';
     SalesComponent,
     DeletesaleComponent,
     EditsalesComponent,
-    AuthComponent
+    AuthComponent,
+    StockComponent,
+    EditStockComponent,
+    SeleteStockComponent,
+    ConstantsComponent,
+    ProfitComponent,
+    ReportComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -38,7 +53,7 @@ import { AuthComponent } from './pages/auth/auth/auth.component';
     NgbModule,
 
   ],
-  providers: [],
+  providers: [DecimalPipe, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
