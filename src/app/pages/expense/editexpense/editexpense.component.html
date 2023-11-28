@@ -1,0 +1,17 @@
+
+<form [formGroup]="expenseForm" (submit)="updateExpense()">
+  <div class="modal-header">
+    <h4 class="modal-title">Update</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.close('Close click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <input  class="nameinput" [defaultValue]="expense.purpose"  placeholder="Enter name" id="purpose"autocomplete="off" formControlName="purpose" />
+    <input  class="nameinput" [defaultValue]="expense.amount"  placeholder="Enter name" id="amount"autocomplete="off" formControlName="amount" />
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="update" >Update</button>
+  </div>
+</form>

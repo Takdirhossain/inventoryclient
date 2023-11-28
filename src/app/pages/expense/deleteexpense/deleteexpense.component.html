@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <h4 class="modal-title">Delete expense</h4>
+
+</div>
+<div class="modal-body">
+  <p>Are you sure you want to delete the expense <strong>{{expense.purpose}}</strong> !</p>
+</div>
+<div class="modal-footer">
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="activeModal.close('Close click')">Close</button>
+    <button type="submit" class="update" (click)="deleteExpense(expense.id)">Delete</button>
+  </div>
+</div>
+

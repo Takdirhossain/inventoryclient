@@ -10,6 +10,7 @@ import { StockComponent } from './pages/stock/stock/stock.component';
 import { ConstantsComponent } from './pages/constants/constants/constants.component';
 import { ProfitComponent } from './pages/profitlist/profit/profit.component';
 import { ReportComponent } from './pages/report/report/report.component';
+import { ExpenseComponent } from './pages/expense/expense/expense.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'dashboard', component: HomeComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'stock', component: StockComponent },
   { path: 'constants', component: ConstantsComponent },
   { path: 'profit', component: ProfitComponent },
-  { path: 'report/:id', component: ReportComponent }
+  { path: 'report/:id', component: ReportComponent },
+  {path: 'expense', component: ExpenseComponent}
 ];
 
 @NgModule({

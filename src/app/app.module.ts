@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,10 +20,15 @@ import { StockComponent } from './pages/stock/stock/stock.component';
 import { EditStockComponent } from './pages/stock/edit-stock/edit-stock.component';
 import { SeleteStockComponent } from './pages/stock/selete-stock/selete-stock.component';
 import { DecimalPipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConstantsComponent } from './pages/constants/constants/constants.component';
 import { ProfitComponent } from './pages/profitlist/profit/profit.component';
 import { ReportComponent } from './pages/report/report/report.component';
+import { ExpenseComponent } from './pages/expense/expense/expense.component';
+import { EditexpenseComponent } from './pages/expense/editexpense/editexpense.component';
+import { DeleteexpenseComponent } from './pages/expense/deleteexpense/deleteexpense.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,15 +50,22 @@ import { ReportComponent } from './pages/report/report/report.component';
     ConstantsComponent,
     ProfitComponent,
     ReportComponent,
-    
+    ExpenseComponent,
+    EditexpenseComponent,
+    DeleteexpenseComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-
+    HttpClientModule,
+FormsModule,
+ReactiveFormsModule,
+BrowserAnimationsModule, // required animations module
+ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [DecimalPipe, HttpClient],
+  providers: [DecimalPipe, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

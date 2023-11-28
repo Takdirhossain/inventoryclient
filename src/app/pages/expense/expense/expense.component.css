@@ -1,0 +1,9 @@
+.add-customer-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+.tablehead{
+  background-color: #4361ee;
+}
+

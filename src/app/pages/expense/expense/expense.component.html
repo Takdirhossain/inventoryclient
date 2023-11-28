@@ -1,0 +1,58 @@
+<h3>Expense</h3>
+<div>
+  <div class="job__search__form--container mt-3">
+    <form [formGroup]="expenseForm" (submit)="newExpense()" class="form-control-main">
+      <div class="add-customer-form">
+        <div  class="namewrapper">
+          <label for="purpose">Expense purpose </label>
+          <input class="nameinput" placeholder="Expense purpose" id="purpose"  autocomplete="off"  formControlName="purpose"/>
+          <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div class="namewrapper">
+          <label for="amount">Total amount</label>
+          <input class="location" id="amount" placeholder="Total Price" autocomplete="off" formControlName="amount">
+          <i class="fa-solid fa-arrow-down-1-9"></i>
+        </div>
+      </div>
+      <div class="add-button">
+        <button class="btn button btn-primary" type="submit">Add</button>
+      </div>
+    </form>
+  </div>
+  <div class="mt-5 tablewrapper">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="tablehead text-white" scope="col">#</th>
+          <th class="tablehead text-white" scope="col">Purpose</th>
+          <th class="tablehead text-white" scope="col">Amount</th>
+          <th class="tablehead text-white" scope="col">Date</th>
+          <th class="tablehead text-white" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+          <tr *ngFor="let item of expenses$ |async; let i = index">
+            <th scope="row">{{i + 1}}</th>
+            <td>{{item.purpose}} </td>
+            <td>{{item.amount}} TK</td>
+            <td>{{item.date}}</td>
+            <td class="d-flex gap-3">
+              <i
+                (click)="editexpense(item)"
+                role="button"
+                class="bi bi-pencil-square"
+              ></i>
+              <i
+                role="button"
+                (click)="deleteExpense(item)"
+                class="bi bi-trash3-fill"
+              ></i>
+            </td>
+          </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
