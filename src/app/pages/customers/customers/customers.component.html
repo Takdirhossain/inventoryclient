@@ -63,34 +63,34 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of countries$ | async; track: item?.name">
+          <tr >
             <th scope="row"></th>
             <td>
               <img
                 [src]="
-                  'https://upload.wikimedia.org/wikipedia/commons/' + item.flag
+                  'https://upload.wikimedia.org/wikipedia/commons/' 
                 "
-                [alt]="'The flag of ' + item.name"
+                [alt]="'The flag of ' "
                 class="me-2"
                 style="width: 20px"
               />
-              <ngb-highlight [result]="item.name" [term]="filter.value" />
+              <ngb-highlight [result]="" [term]="filter.value" />
             </td>
             <td>
               <ngb-highlight
-                [result]="item.area | number"
+                [result]=""
                 [term]="filter.value"
               />
             </td>
             <td>
               <ngb-highlight
-                [result]="item.population | number"
+                [result]=""
                 [term]="filter.value"
               />
             </td>
             <td>
               <ngb-highlight
-                [result]="item.population | number"
+                [result]=""
                 [term]="filter.value"
               />
             </td>
@@ -98,13 +98,13 @@
 
             <td class="d-flex gap-3">
               <i
-                (click)="editcustomer(item)"
+
                 role="button"
                 class="bi bi-pencil-square"
               ></i>
               <i
                 role="button"
-                (click)="open(item.name)"
+
                 class="bi bi-trash3-fill"
               ></i>
             </td>

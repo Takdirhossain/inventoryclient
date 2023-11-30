@@ -1,11 +1,13 @@
-import { DeleteCustomerComponent } from '../../deleteCustomer/delete-customer.component';
+import { DeleteCustomerComponent } from '../deleteCustomer/delete-customer.component';
 import { Component, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common'; // Import DecimalPipe
 import { FormControl, NgModel } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditCustomerComponent } from '../../editCustomer/edit-customer.component';
+import { EditCustomerComponent } from '../editCustomer/edit-customer.component';
+import { CustomerService } from '../service/customer.service';
+import { Customer } from '../model/customer.model';
 
 
 interface Country {
@@ -60,16 +62,22 @@ function search(text: string, pipe: PipeTransform): Country[] {
   providers: [DecimalPipe], // Add DecimalPipe to the providers array
 })
 export class CustomersComponent {
-  countries$!: Observable<Country[]>;
+customer$: Observable<Customer[]> = new Observable
   filter = new FormControl('', { nonNullable: true });
   shorintg : boolean = false
 
-  constructor(pipe: DecimalPipe, private modalService: NgbModal) {
-    this.countries$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map((text) => search(text, pipe))
-    );
+  constructor(pipe: DecimalPipe, private modalService: NgbModal, private customersService: CustomerService) {}
+  ngOnInit(){
+    this.fetchCustomer()
   }
+
+fetchCustomer(){
+this.customersService.getCustomerList().subscribe((res:Customer[]) => {
+this.customer$ = of(res);
+console.log(this.customer$);
+})
+}
+
   open(name: any) {
     const modelRef = this.modalService.open(DeleteCustomerComponent);
     modelRef.componentInstance.name = name;
@@ -83,7 +91,7 @@ export class CustomersComponent {
     this.shorintg = !this.shorintg;
   }
   lowTOHeight(){
-   console.log(this.countries$);
+
   }
   heightToLow(){
     console.log("height to low will call");

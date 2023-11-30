@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavComponent } from './module/nav/nav/nav.component';
 import { HomeComponent } from './pages/home/home/home.component';
-import { CustomersComponent } from './pages/customers/customers/customers/customers.component';
+import { CustomersComponent } from './pages/customers/customers/customers.component';
 import { SalesComponent } from './pages/sales/sales/sales.component';
 import { AuthComponent } from './pages/auth/auth/auth.component';
 import { StockComponent } from './pages/stock/stock/stock.component';
