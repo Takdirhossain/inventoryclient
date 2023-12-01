@@ -74,19 +74,28 @@ customer$: Observable<Customer[]> = new Observable
 fetchCustomer(){
 this.customersService.getCustomerList().subscribe((res:Customer[]) => {
 this.customer$ = of(res);
-console.log(this.customer$);
+
 })
 }
 
-  open(name: any) {
+  deleteCustomer(id: number) {
     const modelRef = this.modalService.open(DeleteCustomerComponent);
-    modelRef.componentInstance.name = name;
+    modelRef.componentInstance.id = id;
   }
-  editcustomer(customer: Country){
+  editcustomer(customer: Customer){
 
     const modelRef = this.modalService.open(EditCustomerComponent)
     modelRef.componentInstance.customer = customer;
+    modelRef.result.then(res => {
+      if(res){
+        this.fetchCustomer()
+      }else{
+        this.fetchCustomer()
+      }
+    })
   }
+
+
   short(){
     this.shorintg = !this.shorintg;
   }
