@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 :root
 {
+  --base-color: #F4F4F4;
+  --shine-color: rgba(229, 229, 229, 0.8);
+  --animation-duration: 2.0s;
+  --avatar-offset: calc(10px + 26px);
   --table-head-bg-color: #4361ee;
   --border-color: #D1D4DD;
   --main-bg-color: #EEF2FF;

@@ -31,6 +31,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DuepayComponent } from './pages/duepay/duepay/duepay.component';
 import { EditDuePayComponent } from './pages/duepay/edit-due-pay/edit-due-pay.component';
+import { LoadingComponent } from './module/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { EditDuePayComponent } from './pages/duepay/edit-due-pay/edit-due-pay.co
     DeleteexpenseComponent,
     DuepayComponent,
     EditDuePayComponent,
+    LoadingComponent,
 
   ],
   imports: [
