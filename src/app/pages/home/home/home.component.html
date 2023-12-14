@@ -1,5 +1,5 @@
 <div>
-  <marquee><strong>Here will be a long headline with {{result}}</strong></marquee>
+  <marquee><strong>Last Stock {{lastStock.date}} <span >12KG {{lastStock?.twelve_kg}} </span> <span >25Kg {{lastStock?.twentyfive_kg}} </span> <span >33Kg {{lastStock.thirtythree_kg}}</span> <span > 35Kg {{lastStock.thirtyfive_kg}}</span> <span> 45kg   {{lastStock.fourtyfive_kg}}</span>  Last seals was </strong></marquee>
   <div class="shortinfo mt-2">
     <div class="stocksort rounded">
       <h3>Profit Today</h3>
@@ -46,9 +46,9 @@
                 <i class="bi bi-three-dots"></i>
               </button>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem>7Day</button>
-                <button ngbDropdownItem>15Day</button>
-                <button ngbDropdownItem>30Day</button>
+                <option (click)="stateSelectDay(7)" value="7">7Days</option>
+                <option (click)="stateSelectDay(15)" value="15">15Days</option>
+                <option (click)="stateSelectDay(30)" value="30">30Days</option>
               </div>
             </div>
           </div>
@@ -62,41 +62,16 @@
     <div class="chart">
       <h3>Recent Customer</h3>
       <div class=" d-flex flex-column gap-3">
-        <div class="d-flex align-items-center gap-2 recentcustomer">
+        <div *ngFor="let item of recentCustomer$|async" class="d-flex align-items-center gap-2 recentcustomer">
           <img class="profile rounded" src="assets/profile1.jpg" alt="" />
           <span>
-            <h6>Jhon doe</h6>
-            <span>Location: Usa </span>
+            <h6> {{item.name}}</h6>
+            <span> {{item.address? item.address: 'Taltola'}} </span>
           </span>
         </div>
-        <div class="d-flex align-items-center gap-2 recentcustomer">
-          <img class="profile rounded" src="assets/profile2.jpg" alt="" />
-          <span>
-            <h6>Jhon doe</h6>
-            <span>Location: Usa </span>
-          </span>
-        </div>
-        <div class="d-flex align-items-center gap-2 recentcustomer">
-          <img class="profile rounded" src="assets/profile1.jpg" alt="" />
-          <span>
-            <h6>Jhon doe</h6>
-            <span>Location: Usa </span>
-          </span>
-        </div>
-        <div class="d-flex align-items-center gap-2 recentcustomer">
-          <img class="profile rounded" src="assets/profile2.jpg" alt="" />
-          <span>
-            <h6>Jhon doe</h6>
-            <span>Location: Usa </span>
-          </span>
-        </div>
-        <div class="d-flex align-items-center gap-2 recentcustomer">
-          <img class="profile rounded" src="assets/profile2.jpg" alt="" />
-          <span>
-            <h6>Jhon doe</h6>
-            <span>Location: Usa </span>
-          </span>
-        </div>
+
+
+
       </div>
     </div>
   </div>

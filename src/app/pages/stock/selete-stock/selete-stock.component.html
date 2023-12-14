@@ -1,1 +1,15 @@
-<p>selete-stock works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Delete Stock</h4>
+
+</div>
+<div class="modal-body">
+  <p>Are you sure you want to delete  <strong>{{stock.date}}</strong> day stock!</p>
+</div>
+<div class="modal-footer">
+
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark"  (click)="activeModal.close('')">Close</button>
+    <button type="submit" class="update" (click)="deleteExpense(stock.id)">Delete</button>
+  </div>
+</div>

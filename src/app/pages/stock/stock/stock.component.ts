@@ -51,12 +51,27 @@ export class StockComponent {
     });
   }
 
-  editStock(event: any) {
-    const modalRef = this.modalService.open(EditStockComponent);
-    modalRef.componentInstance.sales = event;
+  editStock(event: Stock) {
+
+    const modalRef = this.modalService.open(EditStockComponent, { size: 'xl' });
+    modalRef.componentInstance.stock = event;
+    modalRef.result.then((response) => {
+      if (response) {
+        this.fetchList('');
+      } else {
+        this.fetchList('');
+      }
+    });
   }
-  deletStock(id: any) {
+  deletStock(stock: Stock) {
     const modaRef = this.modalService.open(SeleteStockComponent);
-    modaRef.componentInstance.id = id;
+    modaRef.componentInstance.stock = stock;
+    modaRef.result.then((response) => {
+      if(response){
+        this.fetchList('')
+      }else{
+        this.fetchList('')
+      }
+    })
   }
 }

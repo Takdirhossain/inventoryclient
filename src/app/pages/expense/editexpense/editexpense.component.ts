@@ -50,7 +50,7 @@ export class EditexpenseComponent implements OnInit {
       },
       (error) => {
         this.toastr.error(error.message);
-       
+
 
       }
     );

@@ -39,72 +39,85 @@
       </div>
     </form>
 </div> -->
-<div class="content-area mt-5">
-
-
-  <form>
-    <div class="mb-3 row">
-      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
-      <div class="col-xs-3 col-sm-auto">
-        <input (keyup)="search(getValue($event))" id="table-filtering-search" class="form-control" type="text" placeholder="Enter date" formControlName="filter" />
+  <div class="content-area mt-5">
+    <form>
+      <div class="mb-3 row">
+        <label
+          for="table-filtering-search"
+          class="col-xs-3 col-sm-auto col-form-label"
+          >Full text search:</label
+        >
+        <div class="col-xs-3 col-sm-auto">
+          <input
+            (keyup)="search(getValue($event))"
+            id="table-filtering-search"
+            class="form-control"
+            type="text"
+            placeholder="Enter date"
+            formControlName="filter"
+          />
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
 
-
-
-
-
-
-
-
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="text-white tablehead" scope="col">Id</th>
-        <th class="text-white tablehead" scope="col">Country</th>
-        <th class="text-white tablehead" scope="col">Area</th>
-        <th class="text-white tablehead" scope="col">Population</th>
-        <th class="text-white tablehead" scope="col"></th>
-        <th class="text-white tablehead" scope="col"></th>
-        <th class="text-white tablehead" scope="col"></th>
-        <th class="text-white tablehead" scope="col"></th>
-        <th class="text-white tablehead" scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-
-
-        <ng-container *ngIf="(products$ | async)?.length; else noProducts" >
-          <tr  *ngFor="let item of products$ | async; let i = index">
-            <th scope="row">{{i+1}}</th>
-            <td>{{item.twelve_kg?item.twelve_kg:0}} / {{item.empty_twelve_kg? item.empty_twelve_kg:0}} </td>
-            <td>{{item.twentyfive_kg?item.twentyfive_kg : 0}} / {{item.empty_twentyfive_kg?item.empty_twentyfive_kg:0}}</td>
-            <td>{{item.thirtythree_kg?item.thirtythree_kg:0}} / {{item.empty_thirtythree_kg? item.empty_thirtythree_kg:0}}</td>
-            <td>{{item.thirtyfive_kg?item.thirtyfive_kg:0}} / {{item.empty_thirtyfive_kg?item.empty_thirtyfive_kg:0}}</td>
-            <td>{{item.fourtyfive_kg?item.fourtyfive_kg:0}} / {{item.empty_fourtyfive_kg? item.empty_fourtyfive_kg:0}}</td>
-            <td>{{item.others_kg? item.others_kg: 0}} / {{item.empty_others_kg? item.empty_others_kg:0}}</td>
-  <td>{{item.date}}</td>
-            <td class="d-flex gap-3 " ><i  role="button" (click)="editStock(item)" class="bi bi-pencil-square"></i>  <i role="button"    class="bi bi-trash3-fill"></i></td>
-
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="text-white tablehead" scope="col">Id</th>
+          <th class="text-white tablehead" scope="col">Country</th>
+          <th class="text-white tablehead" scope="col">Area</th>
+          <th class="text-white tablehead" scope="col">Population</th>
+          <th class="text-white tablehead" scope="col"></th>
+          <th class="text-white tablehead" scope="col"></th>
+          <th class="text-white tablehead" scope="col"></th>
+          <th class="text-white tablehead" scope="col"></th>
+          <th class="text-white tablehead" scope="col"></th>
+          <th class="text-white tablehead" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="(products$ | async)?.length; else noProducts">
+          <tr *ngFor="let item of products$ | async; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ item.twelve_kg ? item.twelve_kg : 0 }} /
+              {{ item.empty_twelve_kg ? item.empty_twelve_kg : 0 }}
+            </td>
+            <td>
+              {{ item.twentyfive_kg ? item.twentyfive_kg : 0 }} /
+              {{ item.empty_twentyfive_kg ? item.empty_twentyfive_kg : 0 }}
+            </td>
+            <td>
+              {{ item.thirtythree_kg ? item.thirtythree_kg : 0 }} /
+              {{ item.empty_thirtythree_kg ? item.empty_thirtythree_kg : 0 }}
+            </td>
+            <td>
+              {{ item.thirtyfive_kg ? item.thirtyfive_kg : 0 }} /
+              {{ item.empty_thirtyfive_kg ? item.empty_thirtyfive_kg : 0 }}
+            </td>
+            <td>
+              {{ item.fourtyfive_kg ? item.fourtyfive_kg : 0 }} /
+              {{ item.empty_fourtyfive_kg ? item.empty_fourtyfive_kg : 0 }}
+            </td>
+            <td>
+              {{ item.others_kg ? item.others_kg : 0 }} /
+              {{ item.empty_others_kg ? item.empty_others_kg : 0 }}
+            </td>
+            <td>{{ item.price }} Tk</td>
+            <td>{{ item.date }}</td>
+            <td class="d-flex gap-3">
+              <i role="button" (click)="editStock(item)" class="bi bi-pencil-square" ></i>
+              <i role="button" (click)="deletStock(item)" class="bi bi-trash3-fill"></i>
+            </td>
           </tr>
         </ng-container>
 
-
-
-
-      <ng-template #noProducts>
-        <tr>
-          <td colspan="9" style="text-align: center">No products found</td>
-        </tr>
-      </ng-template>
-
-    </tbody>
-  </table>
-
-
-
-
-
-</div>
+        <ng-template #noProducts>
+          <tr>
+            <td colspan="9" style="text-align: center">No products found</td>
+          </tr>
+        </ng-template>
+      </tbody>
+    </table>
+  </div>
 </div>
