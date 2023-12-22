@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DuepayComponent } from './pages/duepay/duepay/duepay.component';
 import { EditDuePayComponent } from './pages/duepay/edit-due-pay/edit-due-pay.component';
 import { LoadingComponent } from './module/loading/loading.component';
+import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { LoadingComponent } from './module/loading/loading.component';
     DuepayComponent,
     EditDuePayComponent,
     LoadingComponent,
+    MainlayoutComponent,
 
   ],
   imports: [

@@ -11,16 +11,29 @@ import { ConstantsComponent } from './pages/constants/constants/constants.compon
 import { ProfitComponent } from './pages/profitlist/profit/profit.component';
 import { ReportComponent } from './pages/report/report/report.component';
 import { ExpenseComponent } from './pages/expense/expense/expense.component';
+import { MainlayoutComponent } from './mainlayout/mainlayout.component';
+import { AuthGuard } from './core/guard/auth.guard';
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'dashboard', component: HomeComponent },
-  { path: 'customers', component: CustomersComponent },
-  { path: 'sales', component: SalesComponent },
-  { path: 'stock', component: StockComponent },
-  { path: 'constants', component: ConstantsComponent },
-  { path: 'profit', component: ProfitComponent },
-  { path: 'report/:id', component: ReportComponent },
-  {path: 'expense', component: ExpenseComponent}
+  {
+    path: 'auth/dashboard',
+    component: MainlayoutComponent,
+    canActivate: [AuthGuard],
+    children: [
+      // ...
+      { path: 'home', component: HomeComponent },
+      { path: 'customers', component: CustomersComponent },
+      { path: 'sales', component: SalesComponent },
+      { path: 'stock', component: StockComponent },
+      { path: 'constants', component: ConstantsComponent },
+      { path: 'profit', component: ProfitComponent },
+      { path: 'report/:id', component: ReportComponent },
+      { path: 'expense', component: ExpenseComponent },
+      // ...
+    ],
+  },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: 'auth/login', component: AuthComponent },
+
 ];
 
 @NgModule({

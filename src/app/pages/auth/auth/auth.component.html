@@ -1,27 +1,34 @@
 <section>
   <div class="form-box">
-      <div class="form-value">
-          <form action="">
-              <h2>Login</h2>
-              <div class="inputbox">
-                  <!-- <ion-icon name="mail-outline"></ion-icon> -->
-                  <input type="email" required>
-                  <label for="">Email</label>
-              </div>
-              <div class="inputbox">
-                  <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
-                  <input type="password" required>
-                  <label for="">Password</label>
-              </div>
-              <div class="forget">
-                  <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
+    <div class="form-value">
+      <form [formGroup]="loginForm" (submit)="login()">
+        <h2>Login</h2>
 
-              </div>
-              <button>Log in</button>
-              <div class="register">
-                  <p>Don't have a account <a href="#">Register</a></p>
-              </div>
-          </form>
-      </div>
+        <div class="inputbox">
+          <input formControlName="email" required />
+          <label for="">Email</label>
+        </div>
+        <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <p class="text-warning error-message">Email is required</p>
+        </div>
+
+        <div class="inputbox">
+          <input formControlName="password" type="password" required />
+          <label for="">Password</label>
+        </div>
+        <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <p class="text-warning error-message">
+            Password must be at least 6 characters long.
+          </p>
+        </div>
+
+        <!-- Disable the submit button if the form is invalid -->
+        <button type="submit" [disabled]="loginForm.invalid">Log in</button>
+
+        <div class="register">
+          <p>Don't have an account <a href="#">Register</a></p>
+        </div>
+      </form>
+    </div>
   </div>
 </section>
