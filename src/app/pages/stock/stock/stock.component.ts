@@ -1,6 +1,6 @@
 import { DecimalPipe } from '@angular/common';
 import { AfterViewInit, Component, PipeTransform } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   Observable,
@@ -26,7 +26,7 @@ export class StockComponent {
   private searchText = new Subject<string>();
   products$: Observable<Stock[]> = new Observable();
   loading$!: Observable<boolean>;
-
+  newStock!: FormGroup
   constructor(
     private stockService: StockService,
     private modalService: NgbModal
@@ -39,6 +39,14 @@ export class StockComponent {
       .subscribe((searchValue) => this.fetchList({ date: searchValue }));
     this.fetchList('');
   }
+
+  setup(){
+    const {required, pattern} = Validators
+    this.newStock = new FormGroup({
+     'twelve_kg' : new FormControl('',)
+    })
+  }
+
   getValue(event: Event): string {
     return (event.target as HTMLInputElement).value;
   }

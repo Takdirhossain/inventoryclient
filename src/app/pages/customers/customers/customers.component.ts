@@ -1,14 +1,15 @@
 import { DeleteCustomerComponent } from '../deleteCustomer/delete-customer.component';
 import { Component, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common'; // Import DecimalPipe
-import { FormControl, NgModel } from '@angular/forms';
+import { FormControl, FormGroup, NgModel, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCustomerComponent } from '../editCustomer/edit-customer.component';
 import { CustomerService } from '../service/customer.service';
-import { Customer } from '../model/customer.model';
-
+import { ApiResponse, Customer, Sale } from '../model/customer.model';
+import { Toast, ToastrService } from 'ngx-toastr';
+import { ReportComponent } from '../../report/report/report.component';
 
 interface Country {
   name: string;
@@ -44,16 +45,6 @@ const COUNTRIES: Country[] = [
   },
 ];
 
-function search(text: string, pipe: PipeTransform): Country[] {
-  return COUNTRIES.filter((country) => {
-    const term = text.toLowerCase();
-    return (
-      country.name.toLowerCase().includes(term) ||
-      pipe.transform(country.area).includes(term) ||
-      pipe.transform(country.population).includes(term)
-    );
-  });
-}
 
 @Component({
   selector: 'app-customers',
@@ -62,47 +53,85 @@ function search(text: string, pipe: PipeTransform): Country[] {
   providers: [DecimalPipe], // Add DecimalPipe to the providers array
 })
 export class CustomersComponent {
-customer$: Observable<Customer[]> = new Observable
-  filter = new FormControl('', { nonNullable: true });
-  shorintg : boolean = false
+  customer:ApiResponse[] = []
+customerList: Customer[] = []
+  shorintg: boolean = false;
+  newCustomer!: FormGroup;
 
-  constructor(pipe: DecimalPipe, private modalService: NgbModal, private customersService: CustomerService) {}
-  ngOnInit(){
-    this.fetchCustomer()
+  constructor(
+    pipe: DecimalPipe,
+    private modalService: NgbModal,
+    private customersService: CustomerService,
+    private toast: ToastrService
+  ) {}
+
+  ngOnInit() {
+    this.fetchCustomer();
+
+
+    this.setup();
   }
-
-fetchCustomer(){
-this.customersService.getCustomerList().subscribe((res:Customer[]) => {
-this.customer$ = of(res);
-
-})
-}
-
-  deleteCustomer(id: number) {
-    const modelRef = this.modalService.open(DeleteCustomerComponent);
-    modelRef.componentInstance.id = id;
+  calculateTotalDue(): number {
+    return this.customer.reduce((total, item) => total + item.total_due, 0);
   }
-  editcustomer(customer: Customer){
-
-    const modelRef = this.modalService.open(EditCustomerComponent)
-    modelRef.componentInstance.customer = customer;
-    modelRef.result.then(res => {
-      if(res){
+  get fc() {
+    return this.newCustomer.controls;
+  }
+  setup() {
+    this.newCustomer = new FormGroup({
+      name: new FormControl('', Validators.required),
+    });
+  }
+  save() {
+    const data = this.newCustomer.value;
+    this.customersService.addNewCustomer(data).subscribe(
+      (res) => {
         this.fetchCustomer()
-      }else{
+        this.toast.success("customer added successfully");
+      },
+      (error) => {
         this.fetchCustomer()
+        this.toast.error('cant add new customer');
       }
-    })
+    );
   }
 
+  fetchCustomer() {
+    this.customersService.getCustomerList().subscribe((res: any) => {
+      this.customer = res;
+      if (this.customer.length > 0) {
+        this.customerList = this.customer.reduce((acc, dt) => acc.concat(dt.customers), [] as Customer[]);
+        console.log(this.customerList);
+      }
+    });
+  }
 
-  short(){
+  deleteCustomer(customer: Customer) {
+    const modelRef = this.modalService.open(DeleteCustomerComponent);
+    modelRef.componentInstance.customer = customer;
+  }
+  editcustomer(customer: Customer) {
+    const modelRef = this.modalService.open(EditCustomerComponent);
+    modelRef.componentInstance.customer = customer;
+    modelRef.result.then((res) => {
+      if (res) {
+        this.fetchCustomer();
+      } else {
+        this.fetchCustomer();
+      }
+    });
+  }
+
+  short() {
     this.shorintg = !this.shorintg;
   }
-  lowTOHeight(){
+  lowTOHeight() {}
+  heightToLow() {
 
   }
-  heightToLow(){
-    console.log("height to low will call");
+  generateReport(sales: any, name: string) {
+  const modalRef = this.modalService.open(ReportComponent, { size: <any>'xl' })
+  modalRef.componentInstance.sales = sales;
+  modalRef.componentInstance.name = name;
   }
 }

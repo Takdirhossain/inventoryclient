@@ -9,3 +9,11 @@
   background-color: white;
   box-shadow: var(--primary-shadow)
 }
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 15px;
+  margin-top: 15px;
+  margin-right: 15px;
+}

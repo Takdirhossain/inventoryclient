@@ -62,20 +62,11 @@
       </thead>
       <tbody>
 
-          <tr *ngFor="let item of countries$ | async; track item?.name; ">
-            <th scope="row"></th>
-            <td>
-              <img
-              [src]="'https://upload.wikimedia.org/wikipedia/commons/' + item.flag"
-              [alt]="'The flag of ' + item.name"
-              class="me-2"
-              style="width: 20px"
-              />
-              <ngb-highlight [result]="item.name" [term]="filter.value" />
-            </td>
-            <td><ngb-highlight [result]=" item.area | number" [term]="filter.value" /></td>
-            <td><ngb-highlight [result]=" item.population | number" [term]="filter.value" /> </td>
-            <td class="d-flex gap-3 " ><i  role="button" (click)="editSales(item)" class="bi bi-pencil-square"></i>  <i role="button" (click)="deletesale(item.name)"   class="bi bi-trash3-fill"></i></td>
+          <tr *ngFor="let item of saleList$   ">
+            <td>{{item.customer_name}}</td>
+
+
+            <td class="d-flex gap-3 " ><i  role="button"  class="bi bi-pencil-square"></i>  <i role="button"   class="bi bi-trash3-fill"></i></td>
           </tr>
 
           <tr>

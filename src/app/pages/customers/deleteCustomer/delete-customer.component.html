@@ -3,11 +3,11 @@
 
 </div>
 <div class="modal-body">
-  <p>Are you sure you want to delete the customer, <strong>{{ name }}</strong>!</p>
+  <p>Are you sure you want to delete <strong>{{ customer.name }}</strong>!</p>
 </div>
 <div class="modal-footer">
 
 
   <button type="button" class="btn btn-outline-dark" (click)="modalclose()">Close</button>
-  <button type="button"  class="delete" (click)="closeafterdelete()">Delete</button>
+  <button type="button"  class="delete" (click)="closeafterdelete(customer.id)">Delete</button>
 </div>

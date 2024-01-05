@@ -2,9 +2,11 @@ import { DecimalPipe } from '@angular/common';
 import { Component, PipeTransform, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, map, of, startWith } from 'rxjs';
 import { DeletesaleComponent } from '../deleteSales/deletesale.component';
 import { EditsalesComponent } from '../editSales/editsales.component';
+import { Sales } from '../models/sales.models';
+import { SalesService } from '../service/sales.service';
 
 interface Country {
   name: string;
@@ -13,42 +15,7 @@ interface Country {
   population: number;
 }
 
-const COUNTRIES: Country[] = [
-  {
-    name: 'Russia',
-    flag: 'f/f3/Flag_of_Russia.svg',
-    area: 17075200,
-    population: 146989754,
-  },
-  {
-    name: 'Canada',
-    flag: 'c/cf/Flag_of_Canada.svg',
-    area: 9976140,
-    population: 36624199,
-  },
-  {
-    name: 'United States',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-    area: 9629091,
-    population: 324459463,
-  },
-  {
-    name: 'China',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-    area: 9596960,
-    population: 1409517397,
-  },
-];
-function search(text: string, pipe: PipeTransform): Country[] {
-  return COUNTRIES.filter((country) => {
-    const term = text.toLowerCase();
-    return (
-      country.name.toLowerCase().includes(term) ||
-      pipe.transform(country.area).includes(term) ||
-      pipe.transform(country.population).includes(term)
-    );
-  });
-}
+
 
 @Component({
   selector: 'app-sales',
@@ -56,16 +23,22 @@ function search(text: string, pipe: PipeTransform): Country[] {
   styleUrls: ['./sales.component.css'],
   providers: [DecimalPipe],
 })
-export class SalesComponent {
-  countries$!: Observable<Country[]>;
-  filter = new FormControl('', { nonNullable: true });
+export class SalesComponent implements OnInit {
+  saleList$:Sales[] = []
+  constructor( private modalService: NgbModal, private saleSarvice:SalesService) {}
 
-  constructor(pipe: DecimalPipe, private modalService: NgbModal) {
-    this.countries$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map((text) => search(text, pipe))
-    );
+  ngOnInit(){
+    this.fetchList()
   }
+
+  fetchList() {
+    let data = {}
+    this.saleSarvice.getSalesList(data).subscribe((res: Sales[]) => {
+      this.saleList$ = res
+      this.saleList$.map(sale => console.log(sale))
+    });
+  }
+
   deletesale(event: any) {
     const modalRef = this.modalService.open(DeletesaleComponent);
     modalRef.componentInstance.id = event

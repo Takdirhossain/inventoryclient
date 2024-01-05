@@ -57,3 +57,19 @@ padding: 10px 30px 10px 30px;
   padding: 10px 16px;
   border-radius: 7px;
 }
+.input-wrapper{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.bottomcontent{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.form-group{
+  background-color: white;
+border-radius: 7px;
+  padding: 15px;
+  box-shadow: var(--primary-shadow);
+}

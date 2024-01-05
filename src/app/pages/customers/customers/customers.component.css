@@ -64,6 +64,10 @@ padding: 10px 30px 10px 30px;
 .short{
   cursor: pointer;
 }
+.report{
+  background-color: rgb(125, 146, 165);
+  color: white;
+}
 .report:hover{
   background-color: var( --table-head-bg-color);
   cursor: pointer;
