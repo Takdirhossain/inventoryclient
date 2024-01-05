@@ -13,15 +13,19 @@ export class ReportComponent {
   @Input() name!: any
   pagedSales: Sales[] = [];
   currentPage = 1;
-  itemsPerPage = 1;
+  itemsPerPage = 30;
   fileName = `${this.name}Report.xlsx`;
-  ngOnInit(){}
+  ngOnInit(){
+    this.pagedSales = this.sales.slice(0,this.itemsPerPage)
+  }
 
-	constructor(public activeModal: NgbActiveModal, config: NgbPaginationConfig) {}
+	constructor(public activeModal: NgbActiveModal) {}
   pageChanged(event: any): void {
-    const startIndex = (event.page - 1) * this.itemsPerPage;
+
+    const startIndex = (event - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    this.pagedSales = this.sales.slice(startIndex, endIndex);
+   this.pagedSales = this.sales.slice(startIndex, endIndex)
+
   }
   exportexcel(): void {
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sales);

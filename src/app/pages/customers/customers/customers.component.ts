@@ -2,8 +2,8 @@ import { DeleteCustomerComponent } from '../deleteCustomer/delete-customer.compo
 import { Component, PipeTransform } from '@angular/core';
 import { DecimalPipe } from '@angular/common'; // Import DecimalPipe
 import { FormControl, FormGroup, NgModel, Validators } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { Observable, Subject, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditCustomerComponent } from '../editCustomer/edit-customer.component';
 import { CustomerService } from '../service/customer.service';
@@ -54,10 +54,10 @@ const COUNTRIES: Country[] = [
 })
 export class CustomersComponent {
   customer:ApiResponse[] = []
-customerList: Customer[] = []
+  customerList: Customer[] = []
   shorintg: boolean = false;
   newCustomer!: FormGroup;
-
+  private searchText = new Subject<string>();
   constructor(
     pipe: DecimalPipe,
     private modalService: NgbModal,
@@ -66,39 +66,47 @@ customerList: Customer[] = []
   ) {}
 
   ngOnInit() {
-    this.fetchCustomer();
-
-
+    this.fetchCustomer({});
     this.setup();
+    this.searchText
+    .pipe(debounceTime(500), distinctUntilChanged())
+    .subscribe((searchValue) => this.fetchCustomer({ name: searchValue }));
+
   }
-  calculateTotalDue(): number {
-    return this.customer.reduce((total, item) => total + item.total_due, 0);
-  }
-  get fc() {
-    return this.newCustomer.controls;
-  }
+
+
   setup() {
     this.newCustomer = new FormGroup({
       name: new FormControl('', Validators.required),
     });
   }
+
+  getValue(event: Event): string {
+    return (event.target as HTMLInputElement).value;
+  }
+  search(text: string) {
+    this.searchText.next(text);
+  }
+
   save() {
     const data = this.newCustomer.value;
     this.customersService.addNewCustomer(data).subscribe(
       (res) => {
-        this.fetchCustomer()
+        this.fetchCustomer('')
         this.toast.success("customer added successfully");
+        this.newCustomer.reset()
       },
       (error) => {
-        this.fetchCustomer()
+        this.fetchCustomer('')
         this.toast.error('cant add new customer');
       }
     );
   }
 
-  fetchCustomer() {
-    this.customersService.getCustomerList().subscribe((res: any) => {
+  fetchCustomer(event: any) {
+    this.customersService.getCustomerList(event).subscribe((res: any) => {
       this.customer = res;
+      console.log(res);
       if (this.customer.length > 0) {
         this.customerList = this.customer.reduce((acc, dt) => acc.concat(dt.customers), [] as Customer[]);
         console.log(this.customerList);
@@ -115,9 +123,9 @@ customerList: Customer[] = []
     modelRef.componentInstance.customer = customer;
     modelRef.result.then((res) => {
       if (res) {
-        this.fetchCustomer();
+        this.fetchCustomer('');
       } else {
-        this.fetchCustomer();
+        this.fetchCustomer('');
       }
     });
   }

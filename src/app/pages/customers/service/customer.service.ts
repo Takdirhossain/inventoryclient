@@ -12,8 +12,8 @@ export class CustomerService {
   addNewCustomer(data: any){
     return this.http.post(API_URL+'/customers', data)
   }
-  getCustomerList(){
-   return this.http.get <ApiResponse> (API_URL+ '/customers')
+  getCustomerList(data: any){
+   return this.http.put<ApiResponse> (API_URL+ '/customers',data)
   }
   updateCustomer(customer: Customer){
     return this.http.post(API_URL + '/customers/'+ customer.id, customer)
