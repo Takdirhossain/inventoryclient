@@ -106,10 +106,9 @@ export class CustomersComponent {
   fetchCustomer(event: any) {
     this.customersService.getCustomerList(event).subscribe((res: any) => {
       this.customer = res;
-      console.log(res);
       if (this.customer.length > 0) {
         this.customerList = this.customer.reduce((acc, dt) => acc.concat(dt.customers), [] as Customer[]);
-        console.log(this.customerList);
+
       }
     });
   }

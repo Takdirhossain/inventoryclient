@@ -15,7 +15,7 @@
     </div>
     <div class="duemarketsort rounded">
       <h3>Total Due </h3>
-      <h4>90000</h4>
+      <h4 *ngFor="let due of customer">{{due.total_due}} Tk</h4>
     </div>
   </div>
   <div class="home-wrapper pt-4">

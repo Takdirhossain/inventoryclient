@@ -1,33 +1,173 @@
-
-
-<form [formGroup]="stockForm" (submit)="updateStock()" >
+<form [formGroup]="stockForm" (submit)="updateStock()">
   <div class="modal-header">
     <h4 class="modal-title">Update</h4>
-    <button type="button" class="btn-close" aria-label="Close" ></button>
+    <button type="button" class="btn-close" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-
     <div class="input-wrapper">
-      <input  class="nameinput" [defaultValue]="stock.twelve_kg"  placeholder="Enter name" id="purpose"autocomplete="off" formControlName="twelve_kg"  />
-    <input  class="nameinput" [defaultValue]="stock.twentyfive_kg"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="twentyfive_kg" />
-    <input  class="nameinput" [defaultValue]="stock.thirtythree_kg"  placeholder="Enter name" id="purpose"autocomplete="off"  formControlName="thirtythree_kg" />
-    <input  class="nameinput" [defaultValue]="stock.thirtyfive_kg"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="thirtyfive_kg" />
-    <input  class="nameinput" [defaultValue]="stock.fourtyfive_kg"  placeholder="Enter name" id="purpose"autocomplete="off"  formControlName="fourtyfive_kg" />
-    <input  class="nameinput" [defaultValue]="stock.others_kg"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="others_kg" />
-    <input  class="nameinput" [defaultValue]="stock.empty_twelve_kg"  placeholder="Enter name" id="purpose"autocomplete="off"  formControlName="empty_twelve_kg" />
-    <input  class="nameinput" [defaultValue]="stock.empty_twentyfive_kg"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="empty_twentyfive_kg" />
-    <input  class="nameinput" [defaultValue]="stock.empty_thirtythree_kg"  placeholder="Enter name" id="purpose"autocomplete="off"  formControlName="empty_thirtythree_kg" />
-    <input  class="nameinput" [defaultValue]="stock.empty_thirtyfive_kg"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="empty_thirtyfive_kg" />
-    <input  class="nameinput" [defaultValue]="stock.empty_fourtyfive_kg"  placeholder="Enter name" id="purpose"autocomplete="off"  formControlName="empty_fourtyfive_kg" />
-    <input  class="nameinput" [defaultValue]="stock.empty_others_kg"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="empty_others_kg" />
+      <div>
+        <label for="">12kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.twelve_kg"
+          placeholder="Enter name"
+          id="purpose"
+          autocomplete="off"
+          formControlName="twelve_kg"
+        />
+      </div>
+
+      <div>
+        <label for="">25kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.twentyfive_kg"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="twentyfive_kg"
+        />
+      </div>
+      <div>
+        <label for="">33kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.thirtythree_kg"
+          placeholder="Enter name"
+          id="purpose"
+          autocomplete="off"
+          formControlName="thirtythree_kg"
+        />
+      </div>
+      <div>
+        <label for="">35kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.thirtyfive_kg"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="thirtyfive_kg"
+        />
+      </div>
+      <div>
+        <label for="">45kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.fourtyfive_kg"
+          placeholder="Enter name"
+          id="purpose"
+          autocomplete="off"
+          formControlName="fourtyfive_kg"
+        />
+      </div>
+      <div>
+        <label for="">Others</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.others_kg"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="others_kg"
+        />
+      </div>
+
+      <div>
+        <label for="">Empty 12kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.empty_twelve_kg"
+          placeholder="Enter name"
+          id="purpose"
+          autocomplete="off"
+          formControlName="empty_twelve_kg"
+        />
+      </div>
+
+      <div>
+        <label for="">Empty 25kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.empty_twentyfive_kg"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="empty_twentyfive_kg"
+        />
+      </div>
+      <div>
+        <label for="">Empty 33kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.empty_thirtythree_kg"
+          placeholder="Enter name"
+          id="purpose"
+          autocomplete="off"
+          formControlName="empty_thirtythree_kg"
+        />
+      </div>
+      <div>
+        <label for="">Empty 35kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.empty_thirtyfive_kg"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="empty_thirtyfive_kg"
+        />
+      </div>
+      <div>
+        <label for="">Empty 45kg</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.empty_fourtyfive_kg"
+          placeholder="Enter name"
+          id="purpose"
+          autocomplete="off"
+          formControlName="empty_fourtyfive_kg"
+        />
+      </div>
+      <div>
+        <label for="">Others Empty </label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.empty_others_kg"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="empty_others_kg"
+        />
+      </div>
     </div>
     <div class="bottomcontent">
-      <input  class="nameinput" [defaultValue]="stock.price  + 'Tk'"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="price" />
-    <input  class="nameinput" [defaultValue]="stock.date"  placeholder="Enter name" id="amount"autocomplete="off"  formControlName="date" />
+      <div>
+        <label for="">Price</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.price + 'Tk'"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="price"
+        />
+      </div>
+      <div>
+        <label for="">Date</label>
+        <input
+          class="nameinput"
+          [defaultValue]="stock.date"
+          placeholder="Enter name"
+          id="amount"
+          autocomplete="off"
+          formControlName="date"
+        />
+      </div>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark"  >Close</button>
+    <button type="button" class="btn btn-outline-dark">Close</button>
     <button type="submit" class="update">Update</button>
   </div>
 </form>

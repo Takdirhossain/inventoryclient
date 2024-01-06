@@ -24,9 +24,12 @@ import { Stock } from '../model/stock.model';
 })
 export class StockComponent {
   private searchText = new Subject<string>();
-  products$: Observable<Stock[]> = new Observable();
+  products$: Stock[] = []
   loading$!: Observable<boolean>;
   newStock!: FormGroup
+  pagedSales: Stock[] = [];
+  currentPage = 1;
+  itemsPerPage = 60;
   constructor(
     private stockService: StockService,
     private modalService: NgbModal
@@ -46,7 +49,11 @@ export class StockComponent {
      'twelve_kg' : new FormControl('',)
     })
   }
-
+  pageChanged(event: any): void {
+    const startIndex = (event - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.pagedSales = this.products$?.slice(startIndex, endIndex)
+  }
   getValue(event: Event): string {
     return (event.target as HTMLInputElement).value;
   }
@@ -55,7 +62,8 @@ export class StockComponent {
   }
   fetchList(data: any) {
     this.stockService.getProductList(data).subscribe((res: Stock[]) => {
-      this.products$ = of(res);
+      this.products$ = res
+      this.pagedSales = this.products$.slice(0,this.itemsPerPage)
     });
   }
 

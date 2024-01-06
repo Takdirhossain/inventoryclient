@@ -1,7 +1,7 @@
 <h2>Sales</h2>
 <div>
   <div class="job__search__form--container mt-3">
-    <form class="form-control-main">
+    <!-- <form class="form-control-main">
       <div class="add-customer-form">
         <div class="namewrapper">
           <label for="name">Customer Name</label>
@@ -37,14 +37,33 @@
       <div class="add-button">
         <button class="btn button btn-primary" type="btn">Add</button>
       </div>
-    </form>
+    </form> -->
 </div>
 <div class="content-area mt-5">
   <form class="">
     <div class="mb-3 row">
       <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
       <div class="col-xs-3 col-sm-auto">
-
+        <input
+        (keyup)="search(getValue($event))"
+        id="table-filtering-search"
+        class="form-control"
+        autocomplete="off"
+        type="text"
+        placeholder="Name search"
+        formControlName="filter"
+      />
+      </div>
+      <div class="col-xs-3 col-sm-auto">
+        <input
+        autocomplete="off"
+        (keyup)="searchDate(getValue($event))"
+        id="table-filtering-search"
+        class="form-control"
+        type="text"
+        placeholder="Date search"
+        formControlName="filter"
+      />
       </div>
     </div>
   </form>
@@ -52,29 +71,75 @@
   <div class="customertable">
     <table class="table table-striped">
       <thead class="    " >
-        <tr class="">
-          <th  class="text-white tablehead"  scope="col">#</th>
-          <th  class="text-white tablehead"  scope="col">Country</th>
-          <th  class="text-white tablehead"  scope="col">Area</th>
-          <th   class="text-white tablehead" scope="col">Population</th>
-          <th class="text-white tablehead">Action</th>
+        <tr>
+          <th class="text-white tablehead" scope="col">Id</th>
+          <th class="text-white tablehead" scope="col">Name</th>
+          <th class="text-white tablehead" scope="col">Date</th>
+          <th class="text-white tablehead" scope="col">12KG</th>
+          <th class="text-white tablehead" scope="col">25KG</th>
+          <th class="text-white tablehead" scope="col">33KG</th>
+          <th class="text-white tablehead" scope="col">35Kg</th>
+          <th class="text-white tablehead" scope="col">45KG</th>
+
+          <th class="text-white tablehead" scope="col">Price</th>
+          <th class="text-white tablehead" scope="col">Pay</th>
+          <th class="text-white tablehead" scope="col">Due</th>
+          <th class="text-white tablehead" scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
+        <tr *ngFor="let sl of pagedSales; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ sl.customer_name }}</td>
+          <td>{{ sl.date }}</td>
+          <td>
+            {{ sl.twelve_kg ? sl.twelve_kg : "0" }} /
+            {{ sl.empty_twelve_kg ? sl.empty_twelve_kg : "0" }}
+          </td>
+          <td>
+            {{ sl.twentyfive_kg ? sl.twentyfive_kg : "0" }} /
+            {{ sl.empty_twentyfive_kg ? sl.empty_twentyfive_kg : "0" }}
+          </td>
+          <td>
+            {{ sl.thirtythree_kg ? sl.thirtythree_kg : "0" }} /
+            {{ sl.empty_thirtythree_kg ? sl.empty_thirtythree_kg : "0" }}
+          </td>
+          <td>
+            {{ sl.thirtyfive_kg ? sl.thirtyfive_kg : "0" }} /
+            {{ sl.empty_thirtyfive_kg ? sl.empty_thirtyfive_kg : "0" }}
+          </td>
+          <td>
+            {{ sl.fourtyfive_kg ? sl.fourtyfive_kg : "0" }} /
+            {{ sl.empty_fourtyfive_kg ? sl.empty_fourtyfive_kg : "0" }}
+          </td>
 
-          <tr *ngFor="let item of saleList$   ">
-            <td>{{item.customer_name}}</td>
 
-
-            <td class="d-flex gap-3 " ><i  role="button"  class="bi bi-pencil-square"></i>  <i role="button"   class="bi bi-trash3-fill"></i></td>
-          </tr>
-
-          <tr>
-            <td colspan="5" style="text-align: center">No countries found</td>
-          </tr>
+          <td>
+           {{sl.price}} Tk
+          </td>
+          <td>
+           {{sl.pay}} Tk
+          </td>
+          <td >
+           {{sl.due }} Tk
+          </td>
+          <td ><i (click)="editSales(sl)" class="bi bi-pencil-square edit"></i></td>
+        </tr>
+        <tr *ngIf="saleList.length == 0">
+          <td colspan="11">No list found</td>
+        </tr>
 
       </tbody>
     </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+      [(page)]="currentPage"
+      [pageSize]="itemsPerPage"
+      [collectionSize]="saleList.length"
+      (pageChange)="pageChanged($event)"
+      aria-label="Pagination">
+    </ngb-pagination>
+    </div>
   </div>
 </div>
 </div>

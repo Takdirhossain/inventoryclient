@@ -1,31 +1,105 @@
 <h2>Stock</h2>
 <div>
-  <div class="job__search__form--container mt-3">
+  <div class="job__search__form--container mt-3 form-wrapper">
 
+    <form >
 
-    <form  class="form-group">
-
-
+      <div class="modal-body">
         <div class="input-wrapper">
-          <input  class="nameinput"   placeholder="12kg filled" id="purpose"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="25kg filled" id="amount"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="33kg filled" id="purpose"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="35kg filled" id="amount"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="45kg filled" id="purpose"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="others filled" id="amount"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="12kg empty" id="purpose"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="25kg empty" id="amount"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="33kg empty" id="purpose"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="35kg empty" id="amount"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="45kg empty" id="purpose"autocomplete="off"   />
-        <input  class="nameinput"   placeholder="others empty" id="amount"autocomplete="off"   />
+          <div>
+            <label for="">12kg</label>
+            <input class="nameinput" placeholder="Quantity" type="number"
+              id="purpose"
+              autocomplete="off"
+
+            />
+          </div>
+
+          <div>
+            <label for="">25kg</label>
+            <input
+              class="nameinput"
+              placeholder="Quantity" type="number"
+              id="amount"
+              autocomplete="off"
+
+            />
+          </div>
+          <div>
+            <label for="">33kg</label>
+            <input
+              class="nameinput"
+
+              placeholder="Quantity" type="number"
+              id="purpose"
+              autocomplete="off"
+
+            />
+          </div>
+          <div>
+            <label for="">35kg</label>
+            <input
+              class="nameinput"
+
+              placeholder="Quantity" type="number"
+              id="amount"
+              autocomplete="off"
+
+            />
+          </div>
+          <div>
+            <label for="">45kg</label>
+            <input
+              class="nameinput"
+
+              placeholder="Quantity" type="number"
+              id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Others</label>
+            <input class="nameinput"  placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Empty 12kg</label>
+            <input class="nameinput" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Empty 25kg</label>
+            <input class="nameinput" placeholder="Quantity" type="number"  id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 33kg</label>
+            <input class="nameinput" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 35kg</label>
+            <input class="nameinput" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 45kg</label>
+            <input class="nameinput" id="purpose" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Others Empty </label>
+            <input class="nameinput" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
         </div>
         <div class="bottomcontent">
-          <input  class="nameinput"   placeholder="Price" id="amount"autocomplete="off"   />
-        <input  class="nameinput"  placeholder="Date" id="amount"autocomplete="off"  type="date" />
+          <div>
+            <label for="">Price</label>
+            <input class="nameinput" placeholder="Price" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Date</label>
+            <input class="nameinput" placeholder="Date" type="number" id="amount" autocomplete="off"/>
+          </div>
         </div>
-<button  class="btn button btn-primary d-flex justify-content-end mt-3" type="submit">Add</button>
-
+      </div>
+      <div class="add-button">
+        <button type="submit" class="btn button btn-primary" >Add</button>
+      </div>
     </form>
 
 </div>
@@ -44,7 +118,7 @@
             class="form-control"
             type="text"
             placeholder="Enter date"
-            formControlName="filter"
+
           />
         </div>
       </div>
@@ -54,20 +128,22 @@
       <thead>
         <tr>
           <th class="text-white tablehead" scope="col">Id</th>
-          <th class="text-white tablehead" scope="col">Country</th>
-          <th class="text-white tablehead" scope="col">Area</th>
-          <th class="text-white tablehead" scope="col">Population</th>
-          <th class="text-white tablehead" scope="col"></th>
-          <th class="text-white tablehead" scope="col"></th>
-          <th class="text-white tablehead" scope="col"></th>
-          <th class="text-white tablehead" scope="col"></th>
-          <th class="text-white tablehead" scope="col"></th>
+
+
+          <th class="text-white tablehead" scope="col">12KG</th>
+          <th class="text-white tablehead" scope="col">25KG</th>
+          <th class="text-white tablehead" scope="col">33KG</th>
+          <th class="text-white tablehead" scope="col">35Kg</th>
+          <th class="text-white tablehead" scope="col">45KG</th>
+          <th class="text-white tablehead" scope="col">Others</th>
+          <th class="text-white tablehead" scope="col">Price</th>
+          <th class="text-white tablehead" scope="col">Date</th>
           <th class="text-white tablehead" scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
-        <ng-container *ngIf="(products$ | async)?.length; else noProducts">
-          <tr *ngFor="let item of products$ | async; let i = index">
+        <ng-container >
+          <tr *ngFor="let item of pagedSales ; let i = index">
             <th scope="row">{{ i + 1 }}</th>
             <td>
               {{ item.twelve_kg ? item.twelve_kg : 0 }} /
@@ -109,5 +185,14 @@
         </ng-template>
       </tbody>
     </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+      [(page)]="currentPage"
+      [pageSize]="itemsPerPage"
+      [collectionSize]="products$.length"
+      (pageChange)="pageChanged($event)"
+      aria-label="Pagination">
+    </ngb-pagination>
+    </div>
   </div>
 </div>

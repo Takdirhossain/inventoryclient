@@ -24,6 +24,9 @@
         <th class="text-white tablehead" scope="col">35Kg</th>
         <th class="text-white tablehead" scope="col">45KG</th>
         <th class="text-white tablehead" scope="col">Others</th>
+        <th class="text-white tablehead" scope="col">Price</th>
+        <th class="text-white tablehead" scope="col">Pay</th>
+        <th class="text-white tablehead" scope="col">Due</th>
       </tr>
     </thead>
     <tbody>
@@ -55,9 +58,18 @@
           {{ sl.others_kg ? sl.others_kg : "0" }} /
           {{ sl.empty_others_kg ? sl.empty_others_kg : "0" }}
         </td>
+        <td>
+         {{sl.price}} Tk
+        </td>
+        <td>
+         {{sl.pay}} Tk
+        </td>
+        <td >
+         {{sl.due }} Tk
+        </td>
       </tr>
       <tr *ngIf="sales.length == 0">
-        <td colspan="8">No list found</td>
+        <td colspan="11">No list found</td>
       </tr>
     </tbody>
   </table>

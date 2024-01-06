@@ -5,6 +5,8 @@ import Chart from 'chart.js/auto';
 import { ChartOptions } from 'chart.js/dist/types/index';
 import { HomeService } from '../service/home.service';
 import { Observable, of } from 'rxjs';
+import { CustomerService } from '../../customers/service/customer.service';
+import { ApiResponse } from '../../customers/model/customer.model';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +15,7 @@ import { Observable, of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   chart: any;
+  customer:ApiResponse[] = []
   lastStock: any;
   recentCustomer$: Observable<RecentCustomer[]> = new Observable<RecentCustomer[]>();
   stockStates!: StockStates;
@@ -29,10 +32,11 @@ export class HomeComponent implements OnInit {
     this.state();
     this.fetchlastStock()
     this.fetchRecentCustomers()
+    this.fetchCustomer('')
 
   }
 
-  constructor(private homeservice: HomeService) {}
+  constructor(private homeservice: HomeService,   private customersService: CustomerService) {}
 
 //Last stock
 fetchlastStock(){
@@ -40,6 +44,13 @@ fetchlastStock(){
     this.lastStock = data
     console.log(this.lastStock);
   })
+}
+
+fetchCustomer(event: any) {
+  this.customersService.getCustomerList(event).subscribe((res: any) => {
+    this.customer = res;
+console.log(this.customer);
+  });
 }
 
 //get recent customer

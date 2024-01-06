@@ -21,14 +21,12 @@ export class ReportComponent {
 
 	constructor(public activeModal: NgbActiveModal) {}
   pageChanged(event: any): void {
-
     const startIndex = (event - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-   this.pagedSales = this.sales.slice(startIndex, endIndex)
-
+    this.pagedSales = this.sales.slice(startIndex, endIndex)
   }
   exportexcel(): void {
-    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.sales);
+    const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.pagedSales);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, this.fileName);

@@ -49,7 +49,7 @@
             id="table-filtering-search"
             class="form-control"
             type="text"
-            placeholder="Enter date"
+            placeholder="Search a customer"
             formControlName="filter"
           />
         </div>
@@ -87,7 +87,7 @@
             <td>{{cs.pay}} Tk</td>
             <td>{{cs.due}} Tk</td>
             <td class="report" (click)="generateReport(cs.sales, cs.name)">Report</td>
-            <td><i class="bi bi-pencil-square"></i></td>
+            <td ><i (click)="editcustomer(cs)" class="bi bi-pencil-square edit"></i></td>
           </tr>
 
         </tbody>
