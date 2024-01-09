@@ -27,4 +27,7 @@ export class StockService {
   deleteStock(id: any){
     return this.http.delete(API_URL+ '/products/'+ id)
   }
+  addNewStock(stock: any){
+  return  this.http.post(API_URL+'/products', stock)
+  }
 }

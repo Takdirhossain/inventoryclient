@@ -19,7 +19,7 @@ import { AuthComponent } from './pages/auth/auth/auth.component';
 import { StockComponent } from './pages/stock/stock/stock.component';
 import { EditStockComponent } from './pages/stock/edit-stock/edit-stock.component';
 import { SeleteStockComponent } from './pages/stock/selete-stock/selete-stock.component';
-import { DecimalPipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ConstantsComponent } from './pages/constants/constants/constants.component';
 import { ProfitComponent } from './pages/profitlist/profit/profit.component';
@@ -69,11 +69,12 @@ import { MainlayoutComponent } from './mainlayout/mainlayout.component';
     NgbModule,
     HttpClientModule,
 FormsModule,
+
 ReactiveFormsModule,
 BrowserAnimationsModule, // required animations module
 ToastrModule.forRoot(), // ToastrModule added
   ],
-  providers: [DecimalPipe, ],
+  providers: [DecimalPipe, DatePipe,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,8 @@ export class EditStockComponent {
   constructor(
     public activeModal: NgbActiveModal,
     private stockservice: StockService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+   
   ) {}
 
   get fc() {

@@ -26,7 +26,7 @@ export class SeleteStockComponent {
       },
       (error) => {
         this.activeModal.close();
-        this.toastr.error(error.message);
+        this.toastr.error("Delete successfully");
       }
     )
   }

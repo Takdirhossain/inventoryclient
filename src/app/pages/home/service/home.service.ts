@@ -15,6 +15,7 @@ export class HomeService {
     return this.http.get(API_URL + '/products/laststock')
   }
   getRecentCustomer(){
-    return this.http.get<RecentCustomer[]>(API_URL + '/customers/recentcustomers')
+    const limit = {"limit": 5}
+    return this.http.put<RecentCustomer[]>(API_URL + '/customers/recentcustomers', limit)
   }
 }
