@@ -1,43 +1,121 @@
 <h2>Sales</h2>
 <div>
-  <div class="job__search__form--container mt-3">
-    <!-- <form class="form-control-main">
-      <div class="add-customer-form">
-        <div class="namewrapper">
-          <label for="name">Customer Name</label>
-          <input  class="nameinput" placeholder="Enter name" id="name"autocomplete="off" formControlName="name" />
-          <i class="fa-solid fa-user"></i>
+  <div class="job__search__form--container mt-3 form-wrapper">
+
+    <form [formGroup]="saleForm" (submit)="save()" >
+
+      <div class="modal-body">
+        <div class="input-wrapper">
+          <div>
+            <label for="">12kg</label>
+            <input class="nameinput" formControlName="twelve_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">25kg</label>
+            <input class="nameinput" formControlName="twentyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">33kg</label>
+            <input class="nameinput" formControlName="thirtythree_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">35kg</label>
+            <input class="nameinput" formControlName="thirtyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">45kg</label>
+            <input class="nameinput" formControlName="fourtyfive_kg" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Others</label>
+            <input class="nameinput" formControlName="others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Empty 12kg</label>
+            <input class="nameinput" formControlName="empty_twelve_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Empty 25kg</label>
+            <input class="nameinput" formControlName="empty_twentyfive_kg" placeholder="Quantity" type="number"  id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 33kg</label>
+            <input class="nameinput"  formControlName="empty_thirtythree_kg" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 35kg</label>
+            <input class="nameinput" formControlName="empty_thirtyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 45kg</label>
+            <input class="nameinput" formControlName="empty_fourtyfive_kg" id="purpose" type="number" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Others Empty </label>
+            <input class="nameinput" formControlName="empty_others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 12kg</label>
+            <input class="nameinput" (change)="suming($event )" formControlName="price_twelve_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Price 25kg</label>
+            <input class="nameinput" (change)="suming($event )" formControlName="price_twentyfive_kg" placeholder="Quantity" type="number"  id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 33kg</label>
+            <input class="nameinput"  (change)="suming($event )" formControlName="price_thirtythree_kg" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 35kg</label>
+            <input class="nameinput" (change)="suming($event )" formControlName="price_thirtyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 45kg</label>
+            <input class="nameinput"  (change)="suming($event )" formControlName="price_fourtyfive_kg" id="purpose" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price Empty </label>
+            <input class="nameinput" (change)="suming($event )" formControlName="price_others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+          </div>
         </div>
-        <div class="namewrapper">
-          <label for="code">Product Quantity</label>
-          <input class="location"  id="code"  placeholder="Enter Quantity" autocomplete="off"  formControlName="code"  />
-          <i class="fa-solid fa-arrow-down-1-9"></i>
+        <div class="bottomcontent">
+          <div>
+            <label for="price">Total Price</label>
+            <input class="nameinput" formControlName="price"  placeholder="Price" type="number" id="price"  autocomplete="off"/>
+
+          </div>
+          <div>
+            <label for="">Total pay</label>
+            <input class="nameinput" formControlName="pay"  (change)="totalPay($event)" placeholder="pay" type="number" id="pay"  autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Due</label>
+            <input class="nameinput"  formControlName="due" placeholder="due" type="number" id="due" autocomplete="off"/>
+
+          </div>
         </div>
-        <div class="namewrapper">
-          <label for="code">Product Quantity</label>
-          <input class="location"  id="code"  placeholder="Enter Quantity" autocomplete="off"  formControlName="code"  />
-          <i class="fa-solid fa-arrow-down-1-9"></i>
+        <div class="selectDate">
+          <div>
+            <label for="date">Date</label>
+            <input class="nameinput" formControlName="date" placeholder="Date" type="date" id="date" autocomplete="off" />
+            <div *ngIf="saleForm.get('date')?.touched">
+                <div class="form-error text-danger" *ngIf="dateControl?.hasError('required')">Date is required</div>
+            </div>
         </div>
-        <div class="namewrapper">
-          <label for="code">Product Quantity</label>
-          <input class="location"  id="code"  placeholder="Enter Quantity" autocomplete="off"  formControlName="code"  />
-          <i class="fa-solid fa-arrow-down-1-9"></i>
         </div>
-        <div class="namewrapper">
-          <label for="code">Product Quantity</label>
-          <input class="location"  id="code"  placeholder="Enter location" autocomplete="off"  formControlName="code"  />
-          <i class="fa-solid fa-arrow-down-1-9"></i>
-        </div>
-        <div class="namewrapper">
-          <label for="code">Total Price</label>
-          <input class="location"  id="code"  placeholder="Total Price" autocomplete="off"  formControlName="code"  />
-          <i class="fa-solid fa-arrow-down-1-9"></i>
-        </div>
+        <label class="me-2" for="pokemon">Choose customer</label>
+        <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
       </div>
       <div class="add-button">
-        <button class="btn button btn-primary" type="btn">Add</button>
+        <button  type="submit" class="btn button btn-primary" >Add</button>
       </div>
-    </form> -->
+    </form>
+
 </div>
 <div class="content-area mt-5">
   <form class="">

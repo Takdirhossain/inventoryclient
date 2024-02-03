@@ -3,10 +3,124 @@
   <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
 </div>
 <div class="modal-body">
-<form action="">
-  <input  class="nameinput" [defaultValue]="sales.name" placeholder="Enter name" id="name"autocomplete="off" formControlName="name" />
-  <input  class="nameinput" [defaultValue]="sales.area" placeholder="Enter name" id="name"autocomplete="off" formControlName="name" />
-</form>
+  <div class="job__search__form--container mt-3 form-wrapper">
+
+    <form [formGroup]="saleForm" (submit)="update()" >
+
+      <div class="modal-body">
+        <div class="input-wrapper">
+          <div>
+            <label for="">12kg</label>
+            <input class="nameinput" [defaultValue]="sales.twelve_kg" formControlName="twelve_kg"  type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">25kg</label>
+            <input class="nameinput" [defaultValue]="sales.twentyfive_kg" formControlName="twentyfive_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">33kg</label>
+            <input class="nameinput" [defaultValue]="sales.thirtythree_kg" formControlName="thirtythree_kg"  type="number" id="purpose" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">35kg</label>
+            <input class="nameinput" [defaultValue]="sales.thirtyfive_kg" formControlName="thirtyfive_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">45kg</label>
+            <input class="nameinput"  [defaultValue]="sales.fourtyfive_kg" formControlName="fourtyfive_kg"  type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Others</label>
+            <input class="nameinput" [defaultValue]="sales.others_kg" formControlName="others_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Empty 12kg</label>
+            <input class="nameinput"  [defaultValue]="sales.empty_twelve_kg" formControlName="empty_twelve_kg"  type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Empty 25kg</label>
+            <input class="nameinput" [defaultValue]="sales.empty_twentyfive_kg" formControlName="empty_twentyfive_kg"  type="number"  id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 33kg</label>
+            <input class="nameinput" [defaultValue]="sales.empty_thirtythree_kg" formControlName="empty_thirtythree_kg"  type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 35kg</label>
+            <input class="nameinput" [defaultValue]="sales.empty_thirtyfive_kg" formControlName="empty_thirtyfive_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Empty 45kg</label>
+            <input class="nameinput" [defaultValue]="sales.empty_fourtyfive_kg" formControlName="empty_fourtyfive_kg" id="purpose" type="number" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Others Empty </label>
+            <input class="nameinput"  [defaultValue]="sales.empty_others_kg" formControlName="empty_others_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 12kg</label>
+            <input class="nameinput"  formControlName="price_twelve_kg"  type="number" id="purpose" autocomplete="off"/>
+          </div>
+
+          <div>
+            <label for="">Price 25kg</label>
+            <input class="nameinput"  formControlName="price_twentyfive_kg"  type="number"  id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 33kg</label>
+            <input class="nameinput"   formControlName="price_thirtythree_kg"  type="number" id="purpose"autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 35kg</label>
+            <input class="nameinput"  formControlName="price_thirtyfive_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price 45kg</label>
+            <input class="nameinput"   formControlName="price_fourtyfive_kg" id="purpose" autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Price Others  </label>
+            <input class="nameinput"  formControlName="price_others_kg"  type="number" id="amount" autocomplete="off"/>
+          </div>
+        </div>
+        <div class="bottomcontent">
+          <div>
+            <label for="price">Total Price</label>
+            <input class="nameinput" [defaultValue]="sales.price" formControlName="price"  placeholder="Price" type="number" id="price"  autocomplete="off"/>
+
+          </div>
+          <div>
+            <label for="">Total pay</label>
+            <input class="nameinput"  [defaultValue]="sales.pay" formControlName="pay"   placeholder="pay" type="number" id="pay"  autocomplete="off"/>
+          </div>
+          <div>
+            <label for="">Due</label>
+            <input class="nameinput"  [defaultValue]="sales.due"  formControlName="due" placeholder="due" type="number" id="due" autocomplete="off"/>
+
+          </div>
+          <div>
+            <label for="date">Date</label>
+            <input class="nameinput" [defaultValue]="sales.date" formControlName="date" placeholder="Date" type="text" id="date" autocomplete="off" />
+            <div *ngIf="saleForm.get('date')?.touched">
+
+            </div>
+        </div>
+        </div>
+        <label class="me-2" for="pokemon">Choose customer</label>
+        <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
+
+
+
+      </div>
+      <div class="add-button">
+        <button  type="submit" class="btn button btn-primary" >Add</button>
+      </div>
+    </form>
+
+</div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>

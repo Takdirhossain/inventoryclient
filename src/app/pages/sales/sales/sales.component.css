@@ -57,3 +57,9 @@ padding: 10px 30px 10px 30px;
   padding: 10px 16px;
   border-radius: 7px;
 }
+
+.bottomcontent {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+}

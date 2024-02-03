@@ -14,4 +14,7 @@ export class SalesService {
   getSalesList(data:any){
     return this.http.put<DailySales[]>(API_URL + '/sales', data);
   }
+  addNewSale( sale: any){
+    return this.http.post(API_URL+'/sales', sale)
+  }
 }

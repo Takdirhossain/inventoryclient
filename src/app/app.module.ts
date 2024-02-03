@@ -33,6 +33,10 @@ import { DuepayComponent } from './pages/duepay/duepay/duepay.component';
 import { EditDuePayComponent } from './pages/duepay/edit-due-pay/edit-due-pay.component';
 import { LoadingComponent } from './module/loading/loading.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { MatSelectModule } from '@angular/material/select';
+import { CollectionComponent } from './pages/collection/collection/collection.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,7 @@ import { MainlayoutComponent } from './mainlayout/mainlayout.component';
     EditDuePayComponent,
     LoadingComponent,
     MainlayoutComponent,
+    CollectionComponent,
 
   ],
   imports: [
@@ -68,11 +73,14 @@ import { MainlayoutComponent } from './mainlayout/mainlayout.component';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-FormsModule,
+    FormsModule,
+    NgxMatSelectSearchModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    NgSelectModule,
+    ToastrModule.forRoot(),
 
-ReactiveFormsModule,
-BrowserAnimationsModule, // required animations module
-ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [DecimalPipe, DatePipe,],
   bootstrap: [AppComponent]

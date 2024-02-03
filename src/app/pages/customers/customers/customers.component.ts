@@ -108,7 +108,6 @@ export class CustomersComponent {
       this.customer = res;
       if (this.customer.length > 0) {
         this.customerList = this.customer.reduce((acc, dt) => acc.concat(dt.customers), [] as Customer[]);
-
       }
     });
   }

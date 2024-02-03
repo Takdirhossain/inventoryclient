@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 :root
 {
   --base-color: #F4F4F4;
@@ -113,3 +115,106 @@ padding: 10px 30px 10px 30px;
 .edit{
   cursor: pointer;
 }
+.add-customer-form{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+
+}
+.namewrapper{
+  width: 100%;
+}
+input{
+  text-indent: 20px;
+
+}
+.nameinput{
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: #F4F5F9;
+  border-radius: 5px;
+  margin-top: 4px;
+}
+input:focus{
+  outline: none;
+}
+.location
+{
+  width: 100%;
+  border: none;
+  background-color: #F4F5F9;
+  border-radius: 5px;
+  height: 40px;
+  margin-top: 10px;
+}
+.form-control-main{
+  border: 1px solid var(--border-color);
+  padding: 30px 40px 30px 40px;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+.add-button{
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+
+}
+.button{
+padding: 10px 30px 10px 30px;
+}
+.tablehead{
+  background-color: var(--table-head-bg-color);
+}
+.content-area{
+  background-color: white;
+  box-shadow: var(--primary-shadow);
+  padding: 10px 16px;
+  border-radius: 7px;
+}
+.input-wrapper{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.bottomcontent{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+.form-group{
+  background-color: white;
+border-radius: 7px;
+  padding: 15px;
+  box-shadow: var(--primary-shadow);
+}
+.input-wrapper{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.bottomcontent{
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr);
+}
+label
+{
+  font-size: 12px;
+}
+
+input
+{
+margin-top: 2px;
+}
+.form-wrapper{
+  background-color: white;
+  box-shadow: var(--primary-shadow);
+  padding: 10px 16px;
+  border-radius: 7px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
