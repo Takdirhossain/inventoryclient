@@ -13,9 +13,11 @@ import { NgSelectConfig } from '@ng-select/ng-select';
 })
 export class EditsalesComponent {
 @Input() sales!: DailySales
+@Input() customerlist!:  Customer[]
 saleForm! : FormGroup
 customerList: Customer[] = []
 customer:ApiResponse[] = []
+selectedCountryId: string = "";
 constructor(public activeModal: NgbActiveModal, private customersService : CustomerService, private config: NgSelectConfig) {
   this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
@@ -23,8 +25,9 @@ constructor(public activeModal: NgbActiveModal, private customersService : Custo
 }
 ngOnInit(){
   this.setup()
-  this.fetchCustomer('')
+   this.fetchCustomer('')
 }
+
 setup(){
   const {required, pattern} = Validators
   this.saleForm = new FormGroup({

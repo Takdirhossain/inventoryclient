@@ -1,4 +1,4 @@
-import { Stock } from './../../stock/model/stock.model';
+import { Stock, StockUpdate } from './../../stock/model/stock.model';
 import { RecentCustomer, StockStates } from './../model/home.model';
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
@@ -7,6 +7,7 @@ import { HomeService } from '../service/home.service';
 import { Observable, of } from 'rxjs';
 import { CustomerService } from '../../customers/service/customer.service';
 import { ApiResponse } from '../../customers/model/customer.model';
+import { StockService } from '../../stock/service/stock.service';
 
 @Component({
   selector: 'app-home',
@@ -24,7 +25,7 @@ export class HomeComponent implements OnInit {
   datePart = this.currentDate.toDateString();
   timePart = this.currentDate.toTimeString().split(' ')[0];
   result = `${this.datePart} ${this.timePart}`;
-
+  stockCal!: StockUpdate
   DATA_COUNT = 5;
   NUMBER_CFG = { count: this.DATA_COUNT, min: 0, max: 100 };
 
@@ -33,10 +34,18 @@ export class HomeComponent implements OnInit {
     this.fetchlastStock()
     this.fetchRecentCustomers()
     this.fetchCustomer('')
+    this.stockUpdate()
 
   }
 
-  constructor(private homeservice: HomeService,   private customersService: CustomerService) {}
+  constructor(private homeservice: HomeService, private stockService: StockService,  private customersService: CustomerService) {}
+
+  stockUpdate(){
+    this.stockService.getStock().subscribe((res: any) => {
+      this.stockCal = res
+    })
+  }
+
 
 //Last stock
 fetchlastStock(){
@@ -66,6 +75,7 @@ fetchRecentCustomers() {
     this.homeservice.getStockStates(data).subscribe((res) => {
       this.stockStates = res;
       this.updateDoughnutChart();
+      this.createStockChart()
     });
   }
 
@@ -119,40 +129,40 @@ fetchRecentCustomers() {
   }
 
 
-    // createStockChart() {
-  //   this.chart = new Chart('stockChart', {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['', '', '', ''],
-  //       datasets: [
-  //         {
-  //           type: 'bar',
-  //           label: 'Total',
-  //           data: ['20', '12', '25', '30'],
-  //           backgroundColor: ['#9966FF'],
-  //           borderColor: ['white'],
-  //           borderWidth: 1,
-  //         },
-  //         {
-  //           type: 'bar',
-  //           label: 'Total',
-  //           data: ['25', '8', '11', '35'],
-  //           backgroundColor: ['#36A2EB'],
-  //           borderColor: ['white'],
-  //           borderWidth: 1,
-  //         },
-  //       ],
-  //     },
-  //     options: {
-  //       responsive: false,
-  //       maintainAspectRatio: false,
-  //       animation: {
-  //         duration: 3000,
-  //       },
-  //       backgroundColor: 'black',
-  //     },
-  //   });
-  // }
+    createStockChart() {
+    this.chart = new Chart('stockChart', {
+      type: 'bar',
+      data: {
+        labels: ['', '', '', '', ''],
+        datasets: [
+          {
+            type: 'bar',
+            label: 'Total',
+            data: [this.stockCal.net_stock_twelve_kg, this.stockCal.net_stock_thirtyfive_kg, this.stockCal.net_stock_thirtythree_kg, this.stockCal.net_stock_thirtyfive_kg, this.stockCal.net_stock_fourtyfive_kg],
+            backgroundColor: ['#9966FF'],
+            borderColor: ['white'],
+            borderWidth: 1,
+          },
+          {
+            type: 'bar',
+            label: 'Total',
+            data: [this.stockCal.net_stock_empty_twelve_kg, this.stockCal.net_stock_empty_twentyfive_kg, this.stockCal.net_stock_empty_thirtythree_kg, this.stockCal.net_stock_empty_thirtyfive_kg, this.stockCal.net_stock_empty_fourtyfive_kg],
+            backgroundColor: ['#36A2EB'],
+            borderColor: ['white'],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: {
+          duration: 3000,
+        },
+        backgroundColor: 'black',
+      },
+    });
+  }
 
 
 

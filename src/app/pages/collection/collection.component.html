@@ -1,0 +1,102 @@
+<h2>Collection</h2>
+<div class="job__search__form--container mt-3 form-wrapper">
+
+  <form [formGroup]="collectionForm" (submit)="save()" >
+    <div class="modal-body">
+      <label class="me-2" for="pokemon">Choose customer</label>
+      <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
+      <div *ngIf="collectionForm.get('customer_name')?.touched">
+        <div class="form-error text-danger" *ngIf="collectionForm.get('customer_name')?.hasError('required')">Name is required </div>
+    </div>
+      <div class="selectDate">
+        <div>
+          <label for="pay">Pay Amount</label>
+          <input class="nameinput" formControlName="pay" placeholder="Pay amount" type="number" id="pay" autocomplete="off" />
+          <div *ngIf="collectionForm.get('pay')?.touched">
+              <div class="form-error text-danger" *ngIf="collectionForm.get('pay')?.hasError('required')">pay amount is required </div>
+          </div>
+      </div>
+      </div>
+      <div class="selectDate">
+        <div>
+          <label for="date">Date</label>
+          <input class="nameinput" formControlName="date" placeholder="Date" type="date" id="date" autocomplete="off" />
+          <div *ngIf="collectionForm.get('date')?.touched">
+              <div class="form-error text-danger" *ngIf="collectionForm.get('date')?.hasError('required')">Date is required</div>
+          </div>
+      </div>
+      </div>
+    </div>
+    <div class="add-button">
+      <button  type="submit" class="btn button btn-primary" >Add</button>
+    </div>
+  </form>
+
+
+<div class="mt-5">
+  <form class="">
+    <div class="mb-3 row">
+      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Full text search:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input
+        (keyup)="search(getValue($event))"
+        id="table-filtering-search"
+        class="form-control"
+        autocomplete="off"
+        type="text"
+        placeholder="Name search"
+        formControlName="filter"
+      />
+      </div>
+      <div class="col-xs-3 col-sm-auto">
+        <input
+        autocomplete="off"
+        (keyup)="searchDate(getValue($event))"
+        id="table-filtering-search"
+        class="form-control"
+        type="text"
+        placeholder="Date search"
+        formControlName="filter"
+      />
+      </div>
+    </div>
+  </form>
+  <div class="customertable ">
+    <table class="table table-striped">
+      <thead class="    " >
+        <tr>
+          <th class="text-white tablehead" scope="col">Id</th>
+          <th class="text-white tablehead" scope="col">Name</th>
+          <th class="text-white tablehead" scope="col">Date</th>
+          <th class="text-white tablehead" scope="col">Pay</th>
+          <th class="text-white tablehead" scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sl of pagedSales; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ sl.customer_name }}</td>
+          <td>{{ sl.date }}</td>
+          <td>
+           {{sl.pay}} Tk
+          </td>
+          <td ><i  class="bi bi-pencil-square edit"></i></td>
+        </tr>
+        <tr *ngIf="saleList.length == 0">
+          <td colspan="11">No list found</td>
+        </tr>
+
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination
+      [(page)]="currentPage"
+      [pageSize]="itemsPerPage"
+      [collectionSize]="saleList.length"
+
+      aria-label="Pagination">
+    </ngb-pagination>
+    </div>
+  </div>
+</div>
+</div>

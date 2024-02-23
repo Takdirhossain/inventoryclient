@@ -13,6 +13,7 @@ import { CustomerService } from '../../customers/service/customer.service';
 import { ApiResponse, Customer } from '../../customers/model/customer.model';
 import { ToastrService } from 'ngx-toastr';
 import { NgSelectConfig } from '@ng-select/ng-select';
+import { InvoiceComponent } from 'src/app/module/invoice/invoice.component';
 
 @Component({
   selector: 'app-sales',
@@ -36,7 +37,7 @@ export class SalesComponent implements OnInit  {
   selectedCustomer: string = '';
   selectedCustomerId: string = '';
   selectedCar: number = 0
-
+  totaldue: any
   constructor( private config: NgSelectConfig ,private toast: ToastrService ,private elementRef: ElementRef, private modalService: NgbModal, private saleSarvice:SalesService, private customersService : CustomerService) {
     this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
@@ -98,6 +99,7 @@ export class SalesComponent implements OnInit  {
   }
   chooseCustomer(customer: any) {
    const id = customer.id
+    this.totaldue = customer.due
    const name = customer.name
    this.saleForm?.get('customer_name')?.setValue(name);
    this.saleForm?.get('customer_id')?.setValue(id);
@@ -115,6 +117,10 @@ export class SalesComponent implements OnInit  {
   }
 
   save(){
+    markFormAsTouched(this.saleForm);
+    if (this.saleForm.invalid) {
+      return;
+    }
     const saleData = this.saleForm?.value
     this.saleSarvice.addNewSale(saleData).subscribe((response) => {
       this.toast.success("success")
@@ -140,23 +146,20 @@ export class SalesComponent implements OnInit  {
   }
 
   fetchList(data:any) {
-    this.saleSarvice.getSalesList(data).subscribe((res: DailySales[]) => {
+    let update = {...data, isSale: true}
+    this.saleSarvice.getSalesList(update).subscribe((res: DailySales[]) => {
       this.saleList = res
       this.pagedSales = this.saleList.slice(0, this.itemsPerPage)
     });
   }
-
   fetchCustomer(event: any) {
     this.customersService.getCustomerList(event).subscribe((res: any) => {
       this.customer = res;
       if (this.customer.length > 0) {
         this.customerList = this.customer.reduce((acc, dt) => acc.concat(dt.customers), [] as Customer[]);
       }
-      console.log(this.customerList);
     });
   }
-
-
   deletesale(event: any) {
     const modalRef = this.modalService.open(DeletesaleComponent);
     modalRef.componentInstance.id = event
@@ -164,5 +167,43 @@ export class SalesComponent implements OnInit  {
   editSales(event: DailySales) {
     const modalRef = this.modalService.open(EditsalesComponent, {size: 'lg'})
     modalRef.componentInstance.sales = event
+    modalRef.componentInstance.customerlist = this.customerList
+  }
+  print(){
+    const name = this.saleForm?.get('customer_name')?.value
+    const twbkg = this.saleForm?.get('twelve_kg')?.value
+    const totaltwbkg = this.saleForm?.get('price_twelve_kg')?.value
+    const twbfivekg = this.saleForm?.get('twentyfive_kg')?.value
+    const totaltwbfivekg = this.saleForm?.get('price_twentyfive_kg')?.value
+    const thirthreekg = this.saleForm?.get('thirtythree_kg')?.value
+    const totalthirthreekg = this.saleForm?.get('price_thirtythree_kg')?.value
+    const thirtyfivekg = this.saleForm?.get('thirtyfive_kg')?.value
+    const totalthirtyfivekg = this.saleForm?.get('price_thirtyfive_kg')?.value
+    const fourtiyfivekg = this.saleForm?.get('fourtyfive_kg')?.value
+    const totalfourtiyfivekg = this.saleForm?.get('price_fourtyfive_kg')?.value
+    const total = this.saleForm?.get('price')?.value
+    const pay = this.saleForm?.get('pay')?.value
+    const date = this.saleForm?.get('date')?.value
+    const due = this.totaldue + total - pay
+    let data = {
+      name: name,
+      due: this.totaldue,
+      twbkg: twbkg,
+      twbfivekg: twbfivekg,
+      thirthreekg: thirthreekg,
+      thirtyfivekg: thirtyfivekg,
+      fourtiyfivekg: fourtiyfivekg,
+      subtotal: total,
+      pay: pay,
+      newdue: due,
+      date: date,
+      totaltwbkg: totaltwbkg,
+      totaltwbfivekg: totaltwbfivekg,
+      totalthirthreekg: totalthirthreekg,
+      totalthirtyfivekg: totalthirtyfivekg,
+      totalfourtiyfivekg: totalfourtiyfivekg
+    }
+    const modalRef = this.modalService.open(InvoiceComponent, {size: 'xl'})
+    modalRef.componentInstance.data = data
   }
 }

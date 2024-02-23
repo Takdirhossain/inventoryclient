@@ -15,7 +15,7 @@ import {
 import { EditStockComponent } from '../edit-stock/edit-stock.component';
 import { SeleteStockComponent } from '../selete-stock/selete-stock.component';
 import { StockService } from '../service/stock.service';
-import { Stock } from '../model/stock.model';
+import { Stock, StockUpdate } from '../model/stock.model';
 import { ToastrService } from 'ngx-toastr';
 import { markFormAsTouched } from 'src/app/core/form.helper';
 
@@ -30,6 +30,7 @@ export class StockComponent {
   loading$!: Observable<boolean>;
   newStock!: FormGroup
   pagedSales: Stock[] = [];
+  stockCal: StockUpdate[] =[]
   currentPage = 1;
   itemsPerPage = 60;
   formError: any = null;
@@ -47,6 +48,7 @@ export class StockComponent {
       .subscribe((searchValue) => this.fetchList({ date: searchValue }));
     this.fetchList('');
     this.setup()
+    this.stockUpdate()
   }
 
   setup(){
@@ -107,6 +109,13 @@ export class StockComponent {
         this.toast.error('cant add new customer');
       }
     );
+  }
+
+  stockUpdate(){
+    this.stockService.getStock().subscribe((res: any) => {
+      this.stockCal = res
+      console.log(this.stockCal)
+    })
   }
 
   fetchList(data: any) {

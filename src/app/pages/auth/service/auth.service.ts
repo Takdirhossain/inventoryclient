@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private http: HttpClient) {}
   login(data: any) {
-    if (data.email == 'gg@gmail.com' && data.password == '123456') {
+    if (data.email == 'gg@gmail.com' && data.password == '124567') {
       return data;
     }
     return false;

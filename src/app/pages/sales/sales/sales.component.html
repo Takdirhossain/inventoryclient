@@ -27,10 +27,6 @@
             <label for="">45kg</label>
             <input class="nameinput" formControlName="fourtyfive_kg" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
           </div>
-          <div>
-            <label for="">Others</label>
-            <input class="nameinput" formControlName="others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
-          </div>
 
           <div>
             <label for="">Empty 12kg</label>
@@ -53,10 +49,7 @@
             <label for="">Empty 45kg</label>
             <input class="nameinput" formControlName="empty_fourtyfive_kg" id="purpose" type="number" autocomplete="off"/>
           </div>
-          <div>
-            <label for="">Others Empty </label>
-            <input class="nameinput" formControlName="empty_others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
-          </div>
+
           <div>
             <label for="">Price 12kg</label>
             <input class="nameinput" (change)="suming($event )" formControlName="price_twelve_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
@@ -78,16 +71,16 @@
             <label for="">Price 45kg</label>
             <input class="nameinput"  (change)="suming($event )" formControlName="price_fourtyfive_kg" id="purpose" autocomplete="off"/>
           </div>
-          <div>
-            <label for="">Price Empty </label>
-            <input class="nameinput" (change)="suming($event )" formControlName="price_others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
-          </div>
+
         </div>
         <div class="bottomcontent">
           <div>
             <label for="price">Total Price</label>
             <input class="nameinput" formControlName="price"  placeholder="Price" type="number" id="price"  autocomplete="off"/>
-
+            <div *ngIf="saleForm.get('price')?.touched">
+              <div class="form-error" *ngIf="saleForm.get('price')?.hasError('required')">Price is required
+            </div>
+          </div>
           </div>
           <div>
             <label for="">Total pay</label>
@@ -110,8 +103,13 @@
         </div>
         <label class="me-2" for="pokemon">Choose customer</label>
         <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
+        <div *ngIf="saleForm.get('customer_name')?.touched">
+          <div class="form-error text-danger" *ngIf="saleForm.get('customer_name')?.hasError('required')">Customer name is required
+        </div>
+      </div>
       </div>
       <div class="add-button">
+        <a (click)="print()"  class="btn btn-warning me-4"> <i class="bi bi-printer-fill"></i>  PRINT</a>
         <button  type="submit" class="btn button btn-primary" >Add</button>
       </div>
     </form>

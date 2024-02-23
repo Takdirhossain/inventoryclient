@@ -13,6 +13,8 @@ import { ReportComponent } from './pages/report/report/report.component';
 import { ExpenseComponent } from './pages/expense/expense/expense.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { CollectionComponent } from './pages/collection/collection.component';
+import { InvoiceComponent } from './module/invoice/invoice.component';
 const routes: Routes = [
   {
     path: 'auth/dashboard',
@@ -28,6 +30,7 @@ const routes: Routes = [
       { path: 'profit', component: ProfitComponent },
       { path: 'report/:id', component: ReportComponent },
       { path: 'expense', component: ExpenseComponent },
+      {path: 'collection', component: CollectionComponent}
       // ...
     ],
   },

@@ -20,14 +20,17 @@ export class StockService {
       .put<Stock[]>(API_URL + '/products', data)
       .pipe(finalize(() => this.loadingSubject.next(false)));
   }
-  updateStock(stock: Stock){
-    console.log(stock)
-    return this.http.put(API_URL+ '/products/' + stock.id, stock)
+  updateStock(stock: Stock) {
+    console.log(stock);
+    return this.http.put(API_URL + '/products/' + stock.id, stock);
   }
-  deleteStock(id: any){
-    return this.http.delete(API_URL+ '/products/'+ id)
+  deleteStock(id: any) {
+    return this.http.delete(API_URL + '/products/' + id);
   }
-  addNewStock(stock: any){
-  return  this.http.post(API_URL+'/products', stock)
+  addNewStock(stock: any) {
+    return this.http.post(API_URL + '/products', stock);
+  }
+  getStock(){
+    return this.http.get(API_URL + '/products/stock/update')
   }
 }

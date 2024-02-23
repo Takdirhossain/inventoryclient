@@ -35,8 +35,9 @@ import { LoadingComponent } from './module/loading/loading.component';
 import { MainlayoutComponent } from './mainlayout/mainlayout.component';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { MatSelectModule } from '@angular/material/select';
-import { CollectionComponent } from './pages/collection/collection/collection.component';
+import { CollectionComponent } from './pages/collection/collection.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { InvoiceComponent } from './module/invoice/invoice.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     LoadingComponent,
     MainlayoutComponent,
     CollectionComponent,
+    InvoiceComponent,
 
   ],
   imports: [

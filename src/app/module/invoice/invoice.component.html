@@ -1,0 +1,107 @@
+
+
+
+
+  <div class="modal-header">
+    <h4 class="modal-title">INVOICE</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div class="wrapper">
+      <div class="header">
+        <span class="d-flex align-items-center gap-4">
+          <div class="headerbg"></div>
+          <h2 class="">INVOICE</h2>
+        </span>
+        <span class="d-flex align-items-center gap-5">
+          <div>
+            <h4>M/S Mohammad Enterprise</h4>
+            <p class="mt-0"><i class="bi bi-telephone-fill"></i> 01792429467</p>
+          </div>
+          <div class="headerbg2"></div>
+        </span>
+      </div>
+
+      <div class="main-border"></div>
+      <div class="customer-info mt-5 d-flex justify-content-between">
+        <div>
+          <h5 class="mb-0 fw-bold">INVOICE TO:</h5>
+          <h4 class="customer-name mt-2">{{data?.name}}</h4>
+          <h5 class="mb-0 mt-2">P: </h5>
+          <h5 class="mb-0">A: </h5>
+        </div>
+        <div class="text-end">
+          <h5 class="mb-0 fw-bold mt-2">TOTAL DUE:</h5>
+          <h4 class="customer-name mt-2">{{data?.due}}</h4>
+          <h5 class="mb-0 mt-2">No: {{invoiceNo}}</h5>
+          <h5 class="mb-0">Date: {{data?.date}}</h5>
+        </div>
+      </div>
+
+      <div class="product mt-5">
+        <table class="table">
+          <thead>
+            <tr class="table-head">
+              <th class="table-head" scope="col">Products</th>
+              <th class="table-head" scope="col">Quantity</th>
+              <th class="table-head" scope="col">Price</th>
+              <th class="table-head" scope="col">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>12kg</td>
+              <td>{{data?.twbkg}}</td>
+              <td>{{data?.totaltwbkg /data?.twbkg || 00}}</td>
+              <td>{{data?.totaltwbkg}}</td>
+            </tr>
+            <tr>
+              <td>25kg</td>
+              <td>{{data?.twbfivekg}}</td>
+              <td>{{data?.totaltwbfivekg  / data?.twbfivekg || 00}}</td>
+              <td>{{data?.totaltwbfivekg}}</td>
+            </tr>
+            <tr>
+              <td>33kg</td>
+              <td>{{data?.thirthreekg}}</td>
+              <td>{{data?.totalthirthreekg / data?.thirthreekg || 00 }}</td>
+              <td>{{data?.totalthirthreekg}}</td>
+            </tr>
+            <tr>
+              <td>35kg</td>
+              <td>{{data?.thirtyfivekg}}</td>
+              <td>{{data?.totalthirtyfivekg / data?.thirtyfivekg ||00 }}</td>
+              <td>{{data?.totalthirtyfivekg}}</td>
+            </tr>
+            <tr>
+              <td>45kg</td>
+              <td>{{data?.fourtiyfivekg}}</td>
+              <td>{{data?.totalfourtiyfivekg / data?.fourtiyfivekg || 00}}</td>
+              <td>{{data?.totalfourtiyfivekg}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="d-flex flex-column align-items-end">
+          <h4 class="mb-0 fw-bold mt-2">Sub-total: {{data?.subtotal}}</h4>
+          <h4 class="mb-0 fw-bold">pay: {{data?.pay}}</h4>
+          <h4 class="mb-0 fw-bold">Due: {{data?.newdue}}</h4>
+        </div>
+        <div>
+          <h3 class="mt-5 fw-bold purchase-thanks">THANK FOR  PRUCHASE!</h3>
+        </div>
+        <div>
+          <h3 class="thank fw-bold">THANK YOU </h3>
+        </div>
+        <div class="mt-5">
+          <h4 class="text-center">Delivering Safety and Convenience: Your Trusted LPG Cylinder Supplier</h4>
+          <p class="text-center mt-2"> <i class="bi bi-geo-alt-fill"></i> 440/B, Notunbag, Khilgaon <i class="bi bi-telephone-fill ps-2"></i> 01621233423, 01723238767</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss('Cross click')">Close</button>
+    <button type="submit" class="update" (click)="printInvoice()"><i class="bi bi-printer-fill"></i> PRINT</button>
+  </div>
+
+

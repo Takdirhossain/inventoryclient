@@ -110,10 +110,9 @@
         </div>
         </div>
         <label class="me-2" for="pokemon">Choose customer</label>
-        <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
-
-
-
+        <select >
+          <option *ngFor="let item of customerList">{{item.name}}</option>
+        </select>
       </div>
       <div class="add-button">
         <button  type="submit" class="btn button btn-primary" >Add</button>
