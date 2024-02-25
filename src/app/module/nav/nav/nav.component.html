@@ -1,7 +1,8 @@
 <div class="navwrapper">
   <nav class=" d-flex justify-content-between nav align-items-center">
     <span class="menuclose">
-      <i class="bi bi-list fa-6x"></i>
+      <i (click)="open(content)" class="bi bi-list fa-6x">
+      </i>
     </span>
     <span>
       <img class="user" style="width: 30px" src="https://cdn-icons-png.flaticon.com/512/146/146035.png" alt=""/>
@@ -13,3 +14,26 @@
   </nav>
 
 </div>
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title" id="offcanvas-basic-title"></h4>
+		<button type="button" class=" btn-primary" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+
+      <div class="d-flex flex-column ps-5 pe-5 item-wrapper gap-3">
+       <div class="d-flex flex-column sidebarwrapper  gap-4">
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/home']" >  <span > <i  class="bi bi-house fa-xs me-3"></i>DashBoard</span> <span><i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/customers']"> <span><i class="bi bi-people-fill fa-xs me-3"></i>Customers</span> <span><i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/sales']"><span><i class="bi bi-cash-coin fa-xs me-3"></i>Sales</span> <span> <i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/collection']"><span><i class="bi bi-wallet2 fa-sm me-3"></i>Collection</span> <span><i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/stock']"><span><i class="bi bi-columns-gap fa-xs me-3"></i>Stock</span> <span><i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/constants']"><span><i class="bi bi-bookmarks-fill fa-xs me-3"></i>Constants</span> <span><i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/profit']"><span><i class="bi bi-currency-exchange fa-sm me-3"></i>Profit</span> <span><i class="bi bi-caret-right"></i></span></span>
+        <span class="d-flex  justify-content-between sidebariteam" (click)="offcanvas.dismiss('Cross click')" [routerLink]="['/auth/dashboard/expense']"><span><i class="bi bi-wallet2 fa-sm me-3"></i>Expense</span> <span><i class="bi bi-caret-right"></i></span></span>
+       </div>
+      </div>
+
+
+	</div>
+</ng-template>

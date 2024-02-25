@@ -2,8 +2,7 @@
   margin-left: 10px;
 }
 .nav{
-  padding: 10px;
-margin-left: 20vw;
+  padding: 15px;
 background-color: var(--table-head-bg-color);
 box-shadow: rgba(182, 168, 168, 0.4) 0px 2px 4px, rgba(193, 192, 192, 0.3) 0px 7px 13px -3px, rgba(177, 173, 173, 0.2) 0px -3px 0px inset;
 
@@ -16,4 +15,24 @@ cursor: pointer;
   cursor: pointer;
 font-size: 30px;
   color: white;
+}
+.DashBoard {
+  background-color: #003049;
+  color: white;
+  height: 102vh;
+  box-shadow: 28px 0px 27px -7px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  margin-top: -70px;
+
+}
+.item-wrapper {
+  margin-top: 50%;
+
+}
+.sidebariteam {
+  cursor: pointer;
+}
+.navwrapper{
+  position: fixed;
+  width: 100vw;
 }

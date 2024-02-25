@@ -12,7 +12,11 @@
           formControlName="name"
         />
         <i class="fa-solid fa-user"></i>
-        <div *ngIf="newCustomer.get('name')?.invalid && newCustomer.get('name')?.touched">
+        <div
+          *ngIf="
+            newCustomer.get('name')?.invalid && newCustomer.get('name')?.touched
+          "
+        >
           <p class="text-danger error-message">Name is required</p>
         </div>
       </div>
@@ -21,17 +25,20 @@
         <label for="code">Location</label>
         <input
           class="location"
-
           placeholder="Enter location"
           autocomplete="off"
-
         />
         <i class="fa-solid fa-arrow-down-1-9"></i>
       </div>
     </div>
     <div class="add-button">
-
-      <button type="submit" class="btn button btn-primary" [disabled]="newCustomer.invalid">Add</button>
+      <button
+        type="submit"
+        class="btn button btn-primary"
+        [disabled]="newCustomer.invalid"
+      >
+        Add
+      </button>
     </div>
   </form>
 
@@ -65,16 +72,7 @@
             <th class="text-white tablehead" scope="col">Total Buy</th>
             <th class="text-white tablehead" scope="col">Total Pay</th>
 
-            <th class="text-white tablehead short" (click)="short()">
-              <div (click)="heightToLow()" *ngIf="shorintg">
-                Due <i class="bi bi-arrow-down"></i>
-                <i class="bi bi-arrow-up"></i>
-              </div>
-              <div (click)="lowTOHeight()" *ngIf="!shorintg">
-                Due <i class="bi bi-arrow-up"></i>
-                <i class="bi bi-arrow-down"></i>
-              </div>
-            </th>
+            <th class="text-white tablehead short">Due</th>
             <th class="text-white tablehead">Report</th>
             <th class="text-white tablehead">Action</th>
           </tr>
@@ -83,13 +81,19 @@
           <tr *ngFor="let cs of customerList; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ cs.name }}</td>
-            <td>{{cs.buy}} Tk</td>
-            <td>{{cs.pay}} Tk</td>
-            <td>{{cs.due}} Tk</td>
-            <td class="report" (click)="generateReport(cs.sales, cs.name)">Report</td>
-            <td ><i (click)="editcustomer(cs)" class="bi bi-pencil-square edit"></i></td>
+            <td>{{ cs.buy }} Tk</td>
+            <td>{{ cs.pay }} Tk</td>
+            <td>{{ cs.due }} Tk</td>
+            <td class="report" (click)="generateReport(cs.sales, cs.name)">
+              Report
+            </td>
+            <td>
+              <i
+                (click)="editcustomer(cs)"
+                class="bi bi-pencil-square edit"
+              ></i>
+            </td>
           </tr>
-
         </tbody>
       </table>
     </div>

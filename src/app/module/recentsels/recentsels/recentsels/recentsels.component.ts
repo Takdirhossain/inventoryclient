@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { DecimalPipe, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { DailySales } from 'src/app/pages/sales/models/dailySales.models';
+import { HomeService } from 'src/app/pages/home/service/home.service';
 interface Country {
 	id?: number;
 	name: string;
@@ -100,13 +102,14 @@ const COUNTRIES: Country[] = [
 export class RecentselsComponent {
   page = 1;
 	pageSize = 6;
+  saleList:DailySales[] = []
 	collectionSize = COUNTRIES.length;
 	countries: Country[] = COUNTRIES
-  constructor() {
+  constructor(private homeservice: HomeService) {
 		this.refreshCountries();
 	}
   ngOnInit(){
-
+this.fetchList()
   }
   refreshCountries() {
 		this.countries = COUNTRIES.map((country, i) => ({ id: i + 1, ...country })).slice(
@@ -114,4 +117,10 @@ export class RecentselsComponent {
 			(this.page - 1) * this.pageSize + this.pageSize,
 		);
     }
+    fetchList() {
+      this.homeservice.recentSale().subscribe((res:any) => {
+        this.saleList = res
+      });
+    }
+
 }

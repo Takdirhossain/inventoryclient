@@ -5,11 +5,12 @@
   gap: 30px;
   justify-content: center;
 }
-.chart{
+.chart {
   background-color: white;
   padding: 10px 16px;
   border-radius: 7px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 .chart-container {
   width: 100%;
@@ -22,10 +23,11 @@
   gap: 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-background-color: white;
-padding: 10px 16px;
-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-border-radius: 7px;
+  background-color: white;
+  padding: 10px 16px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 7px;
 }
 .stocksort {
   display: flex;
@@ -35,7 +37,16 @@ border-radius: 7px;
   padding-bottom: 20px;
   align-items: center;
   background-color: #ffe53b;
-  background-image: radial-gradient( circle 976px at 51.2% 51%,  rgba(11,27,103,1) 0%, rgba(16,66,157,1) 0%, rgba(11,27,103,1) 17.3%, rgba(11,27,103,1) 58.8%, rgba(11,27,103,1) 71.4%, rgba(16,66,157,1) 100.2%, rgba(187,187,187,1) 100.2% );
+  background-image: radial-gradient(
+    circle 976px at 51.2% 51%,
+    rgba(11, 27, 103, 1) 0%,
+    rgba(16, 66, 157, 1) 0%,
+    rgba(11, 27, 103, 1) 17.3%,
+    rgba(11, 27, 103, 1) 58.8%,
+    rgba(11, 27, 103, 1) 71.4%,
+    rgba(16, 66, 157, 1) 100.2%,
+    rgba(187, 187, 187, 1) 100.2%
+  );
   color: white;
   font-weight: bold;
 }
@@ -47,7 +58,11 @@ border-radius: 7px;
   padding-top: 20px;
   padding-bottom: 20px;
   align-items: center;
-  background-image: linear-gradient( 96.5deg,  rgba(39,103,187,1) 10.4%, rgba(16,72,144,1) 87.7% );
+  background-image: linear-gradient(
+    96.5deg,
+    rgba(39, 103, 187, 1) 10.4%,
+    rgba(16, 72, 144, 1) 87.7%
+  );
 }
 .monthselshort {
   color: white;
@@ -57,9 +72,13 @@ border-radius: 7px;
   padding-top: 20px;
   padding-bottom: 20px;
   align-items: center;
-  background-image: linear-gradient( 110.3deg,  rgba(73,93,109,1) 4.3%, rgba(49,55,82,1) 96.7% );
+  background-image: linear-gradient(
+    110.3deg,
+    rgba(73, 93, 109, 1) 4.3%,
+    rgba(49, 55, 82, 1) 96.7%
+  );
 }
-.duemarketsort{
+.duemarketsort {
   color: white;
   display: flex;
   justify-content: center;
@@ -67,45 +86,52 @@ border-radius: 7px;
   padding-top: 20px;
   padding-bottom: 20px;
   align-items: center;
-  background-image: radial-gradient( circle 610px at 5.2% 51.6%,  rgba(5,8,114,1) 0%, rgba(7,3,53,1) 97.5% );
+  background-image: radial-gradient(
+    circle 610px at 5.2% 51.6%,
+    rgba(5, 8, 114, 1) 0%,
+    rgba(7, 3, 53, 1) 97.5%
+  );
 }
-.profile
-{
+.profile {
   width: 50px;
-height: 50px;
-object-fit: cover;
+  height: 50px;
+  object-fit: cover;
 }
-.recentcustomer{
+.recentcustomer {
   background-color: var(--main-bg-color);
   border-radius: 8px;
 }
-.recentcustomer:hover{
+.recentcustomer:hover {
   background-color: white;
   transition: 0.3s ease-in-out;
 }
-.stockchart{
+.stockchart {
   width: 100%;
-
 }
-.piechart{
+.piechart {
   display: flex;
 
   justify-content: center;
 }
-.recetnsels{
+.recetnsels {
   background-color: white;
   padding: 10px 16px;
   border-radius: 7px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-.first-chart{
-
-}
-.btn-outline-primary{
+.btn-outline-primary {
   border: none;
   color: none;
 }
-.btn-outline-primary:hover{
- background-color: var(--table-head-bg-color);
-
+.btn-outline-primary:hover {
+  background-color: var(--table-head-bg-color);
+}
+@media (max-width: 600px) {
+  .shortinfo{
+    grid-template-columns: 1fr;
+  }
+  .home-wrapper{
+    grid-template-columns: 1fr;
+  }
 }

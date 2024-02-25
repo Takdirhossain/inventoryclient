@@ -62,4 +62,23 @@ padding: 10px 30px 10px 30px;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(3, 1fr);
+  margin-top: 15px;
+}
+
+@media (max-width: 600px) {
+  .input-wrapper {
+    grid-template-columns:  repeat(3, 1fr) !important;
+  }
+  .nameinput{
+    margin-top: 5px;
+  }
+}
+.customertable{
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+}
+.customertable::-webkit-scrollbar {
+  display: none;
 }

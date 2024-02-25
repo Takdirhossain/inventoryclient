@@ -8,57 +8,48 @@
         <div class="input-wrapper">
           <div>
             <label for="">12kg</label>
-            <input class="nameinput" formControlName="twelve_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+            <input class="nameinput" formControlName="twelve_kg" placeholder="Filled" type="number" id="purpose" autocomplete="off"/>
           </div>
 
           <div>
             <label for="">25kg</label>
-            <input class="nameinput" formControlName="twentyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+            <input class="nameinput" formControlName="twentyfive_kg" placeholder="Filled" type="number" id="amount" autocomplete="off"/>
           </div>
           <div>
             <label for="">33kg</label>
-            <input class="nameinput" formControlName="thirtythree_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+            <input class="nameinput" formControlName="thirtythree_kg" placeholder="Filled" type="number" id="purpose" autocomplete="off"/>
           </div>
           <div>
             <label for="">35kg</label>
-            <input class="nameinput" formControlName="thirtyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+            <input class="nameinput" formControlName="thirtyfive_kg" placeholder="Filled" type="number" id="amount" autocomplete="off"/>
           </div>
           <div>
             <label for="">45kg</label>
-            <input class="nameinput" formControlName="fourtyfive_kg" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
+            <input class="nameinput" formControlName="fourtyfive_kg" placeholder="Filled" type="number" id="purpose"autocomplete="off"/>
           </div>
-          <div>
-            <label for="">Others</label>
-            <input class="nameinput" formControlName="others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
-          </div>
+
 
           <div>
             <label for="">Empty 12kg</label>
-            <input class="nameinput" formControlName="empty_twelve_kg" placeholder="Quantity" type="number" id="purpose" autocomplete="off"/>
+            <input class="nameinput" formControlName="empty_twelve_kg" placeholder="Empty" type="number" id="purpose" autocomplete="off"/>
           </div>
 
           <div>
             <label for="">Empty 25kg</label>
-            <input class="nameinput" formControlName="empty_twentyfive_kg" placeholder="Quantity" type="number"  id="amount" autocomplete="off"/>
+            <input class="nameinput" formControlName="empty_twentyfive_kg" placeholder="Empty" type="number"  id="amount" autocomplete="off"/>
           </div>
           <div>
             <label for="">Empty 33kg</label>
-            <input class="nameinput"  formControlName="empty_thirtythree_kg" placeholder="Quantity" type="number" id="purpose"autocomplete="off"/>
+            <input class="nameinput"  formControlName="empty_thirtythree_kg" placeholder="Empty" type="number" id="purpose"autocomplete="off"/>
           </div>
           <div>
             <label for="">Empty 35kg</label>
-            <input class="nameinput" formControlName="empty_thirtyfive_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
+            <input class="nameinput" formControlName="empty_thirtyfive_kg" placeholder="Empty" type="number" id="amount" autocomplete="off"/>
           </div>
           <div>
             <label for="">Empty 45kg</label>
-            <input class="nameinput" formControlName="empty_fourtyfive_kg" id="purpose" autocomplete="off"/>
+            <input class="nameinput" formControlName="empty_fourtyfive_kg" id="purpose" placeholder="Empty" autocomplete="off"/>
           </div>
-          <div>
-            <label for="">Others Empty </label>
-            <input class="nameinput" formControlName="empty_others_kg" placeholder="Quantity" type="number" id="amount" autocomplete="off"/>
-          </div>
-        </div>
-        <div class="bottomcontent">
           <div>
             <label for="">Price</label>
             <input class="nameinput" formControlName="price" placeholder="Price" type="number" id="amount" autocomplete="off"/>
@@ -67,6 +58,9 @@
               </div>
           </div>
           </div>
+
+        </div>
+        <div class="bottomcontent">
           <div>
             <label for="">Date</label>
             <input class="nameinput"  formControlName="date" placeholder="Date" type="date" id="amount" autocomplete="off"/>
@@ -75,6 +69,7 @@
               </div>
           </div>
           </div>
+
         </div>
       </div>
       <div class="add-button">
@@ -104,12 +99,11 @@
       </div>
     </form>
 
+  <div class="customertable">
     <table class="table table-striped">
       <thead>
         <tr>
           <th class="text-white tablehead" scope="col">Id</th>
-
-
           <th class="text-white tablehead" scope="col">12KG</th>
           <th class="text-white tablehead" scope="col">25KG</th>
           <th class="text-white tablehead" scope="col">33KG</th>
@@ -165,6 +159,7 @@
         </ng-template>
       </tbody>
     </table>
+  </div>
     <div class="d-flex justify-content-between p-2">
       <ngb-pagination
       [(page)]="currentPage"

@@ -10,30 +10,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of countries">
+    <tr *ngFor="let item of saleList">
       <th scope="row">{{item.id}}</th>
-      <td>
-        <img
-        [src]="'https://upload.wikimedia.org/wikipedia/commons/' + item.flag"
-        [alt]="'The flag of ' + item.name"
-        class="me-2"
-        style="width: 20px"
-      />
-      {{ item.name }}
-      </td>
-      <td>{{ item.area | number }}</td>
-      <td>{{ item.population | number }}</td>
+      <td>{{ item.customer_name }}</td>
+      <td>{{ item.price}}</td>
+      <td>{{ item.pay}}</td>
     </tr>
   </tbody>
 </table>
-<div class="d-flex justify-content-between p-2">
-  <ngb-pagination
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [pageSize]="pageSize"
-    (pageChange)="refreshCountries()"
-  >
-  </ngb-pagination>
 
-
-</div>

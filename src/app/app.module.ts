@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDatepickerModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavComponent } from './module/nav/nav/nav.component';
 import { SidebarComponent } from './module/sidebar/sidebar/sidebar.component';
 import { HomeComponent } from './pages/home/home/home.component';
@@ -82,6 +82,7 @@ import { InvoiceComponent } from './module/invoice/invoice.component';
     MatSelectModule,
     NgSelectModule,
     ToastrModule.forRoot(),
+    NgbDatepickerModule
 
   ],
   providers: [DecimalPipe, DatePipe,],

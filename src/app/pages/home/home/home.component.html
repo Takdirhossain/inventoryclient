@@ -1,17 +1,17 @@
 <div>
-  <marquee><strong>Last Stock {{lastStock.date}} <span >12KG {{lastStock?.twelve_kg}} </span> <span >25Kg {{lastStock?.twentyfive_kg}} </span> <span >33Kg {{lastStock.thirtythree_kg}}</span> <span > 35Kg {{lastStock.thirtyfive_kg}}</span> <span> 45kg   {{lastStock.fourtyfive_kg}}</span>  Last seals was </strong></marquee>
+  <marquee><strong>Current Stock: <span >12KG {{stockCal.net_stock_twelve_kg}} </span> <span >25Kg {{stockCal.net_stock_twentyfive_kg}} </span> <span >33Kg {{stockCal.net_stock_thirtythree_kg}}</span> <span > 35Kg {{stockCal.net_stock_thirtyfive_kg}}</span> <span> 45kg   {{stockCal.net_stock_fourtyfive_kg}}</span> </strong></marquee>
   <div class="shortinfo mt-2">
     <div class="stocksort rounded">
       <h3>Profit Today</h3>
-      <h4>10000</h4>
+      <h4></h4>
     </div>
     <div class="salesTodysort rounded">
       <h3>Today sales</h3>
-      <h4>30000</h4>
+      <h4>{{todaySales}} TK</h4>
     </div>
     <div class="monthselshort rounded">
       <h3>This Month </h3>
-      <h4>100000</h4>
+      <h4>{{monthSale}} TK</h4>
     </div>
     <div class="duemarketsort rounded">
       <h3>Total Due </h3>
@@ -39,23 +39,10 @@
 
     <div class="chart piechart">
       <div>
-        <div class="row">
-          <div class="col text-end">
-            <div ngbDropdown class="d-inline-block">
-              <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
-                <i class="bi bi-three-dots"></i>
-              </button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <option (click)="stateSelectDay(7)" value="7">7Days</option>
-                <option (click)="stateSelectDay(15)" value="15">15Days</option>
-                <option (click)="stateSelectDay(30)" value="30">30Days</option>
-              </div>
-            </div>
-          </div>
-        </div>
         <canvas class="" id="doughnutChart"></canvas>
       </div>
     </div>
+
     <div class="chart">
       <canvas class="stockchart chart-container" id="stockChart"></canvas>
     </div>

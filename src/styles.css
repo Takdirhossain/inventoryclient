@@ -215,6 +215,58 @@ margin-top: 2px;
   padding: 10px 16px;
   border-radius: 7px;
 }
-
+.offcanvas-body{
+  padding: 0px !important;
+}
+.offcanvas-header {
+  padding: 0px;
+}
+.offcanvas.offcanvas-start{
+  width: 250px;
+}
+.offcanvas-body{
+  background-color: #003049;
+  color: white;
+}
+.offcanvas-header {
+  padding-right: 20px;
+  padding-top: 20px !important;
+  background-color: #003049;
+}
+.btn-close{
+  color: white !important;
+}
+body{
+  padding-right: 0px !important;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@media (max-width: 600px) {
+  .input-wrapper {
+    grid-template-columns:  repeat(3, 1fr) !important;
+  }
+  .nameinput{
+    margin-top: 5px;
+  }
+}
+.customertable{
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+}
+.customertable::-webkit-scrollbar {
+  display: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: transparent;
+  bottom: 0;
+  color: transparent;
+  cursor: pointer;
+  height: auto;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: auto;
+  }

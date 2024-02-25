@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 import { CustomerService } from '../../customers/service/customer.service';
 import { ApiResponse } from '../../customers/model/customer.model';
 import { StockService } from '../../stock/service/stock.service';
+import { DailySales } from '../../sales/models/dailySales.models';
 
 @Component({
   selector: 'app-home',
@@ -16,8 +17,9 @@ import { StockService } from '../../stock/service/stock.service';
 })
 export class HomeComponent implements OnInit {
   chart: any;
-  customer:ApiResponse[] = []
+  customer: ApiResponse[] = [];
   lastStock: any;
+  saleList:DailySales[] = []
   recentCustomer$: Observable<RecentCustomer[]> = new Observable<RecentCustomer[]>();
   stockStates!: StockStates;
   stockstatesDay: number = 60;
@@ -25,57 +27,77 @@ export class HomeComponent implements OnInit {
   datePart = this.currentDate.toDateString();
   timePart = this.currentDate.toTimeString().split(' ')[0];
   result = `${this.datePart} ${this.timePart}`;
-  stockCal!: StockUpdate
+  stockCal!: StockUpdate;
   DATA_COUNT = 5;
   NUMBER_CFG = { count: this.DATA_COUNT, min: 0, max: 100 };
-
+  monthSale: number = 0
+  todaySales: number = 0
   ngOnInit() {
     this.state();
-    this.fetchlastStock()
-    this.fetchRecentCustomers()
-    this.fetchCustomer('')
-    this.stockUpdate()
-
+    this.fetchlastStock();
+    this.fetchRecentCustomers();
+    this.fetchCustomer('');
+    this.stockUpdate();
+    this.thisMonthsSale();
+    this.todaySale();
   }
 
-  constructor(private homeservice: HomeService, private stockService: StockService,  private customersService: CustomerService) {}
+  constructor(
+    private homeservice: HomeService,
+    private stockService: StockService,
+    private customersService: CustomerService
+  ) {}
 
-  stockUpdate(){
-    this.stockService.getStock().subscribe((res: any) => {
-      this.stockCal = res
+  thisMonthsSale(){
+    this.homeservice.thisMonthSale().subscribe((res: any) => {
+      this.monthSale = res
     })
   }
+  todaySale(){
+    this.homeservice.todaySales().subscribe((res: any) => {
+      this.todaySales = res
+    })
+  }
+  fetchList() {
+    this.homeservice.recentSale().subscribe((res:any) => {
+      this.saleList = res
+    });
+  }
 
+  stockUpdate() {
+    this.stockService.getStock().subscribe((res: any) => {
+      this.stockCal = res;
+    });
+  }
 
-//Last stock
-fetchlastStock(){
-  this.homeservice.getLastStock().subscribe(data => {
-    this.lastStock = data
-    console.log(this.lastStock);
-  })
-}
+  //Last stock
+  fetchlastStock() {
+    this.homeservice.getLastStock().subscribe((data) => {
+      this.lastStock = data;
+      console.log(this.lastStock);
+    });
+  }
 
-fetchCustomer(event: any) {
-  this.customersService.getCustomerList(event).subscribe((res: any) => {
-    this.customer = res;
-console.log(this.customer);
-  });
-}
+  fetchCustomer(event: any) {
+    this.customersService.getCustomerList(event).subscribe((res: any) => {
+      this.customer = res;
+      console.log(this.customer);
+    });
+  }
 
-//get recent customer
-fetchRecentCustomers() {
-  this.homeservice.getRecentCustomer().subscribe((res: RecentCustomer[]) => {
-
-    this.recentCustomer$ = of(res);
-  });
-}
+  //get recent customer
+  fetchRecentCustomers() {
+    this.homeservice.getRecentCustomer().subscribe((res: RecentCustomer[]) => {
+      this.recentCustomer$ = of(res);
+    });
+  }
   // Get Stock states
   state() {
     const data = { days: this.stockstatesDay };
     this.homeservice.getStockStates(data).subscribe((res) => {
       this.stockStates = res;
       this.updateDoughnutChart();
-      this.createStockChart()
+      this.createStockChart();
     });
   }
 
@@ -111,14 +133,20 @@ fetchRecentCustomers() {
                 this.stockStates.thirtyfive_kg,
                 this.stockStates.fourtyfive_kg,
               ],
-              backgroundColor: ['#36A2EB', '#9966FF', '#525FE1', '#0bdbca', '#0766AD'] ,
+              backgroundColor: [
+                '#36A2EB',
+                '#9966FF',
+                '#525FE1',
+                '#0bdbca',
+                '#0766AD',
+              ],
               borderColor: ['white'],
               borderWidth: 3,
             },
           ],
         },
         options: {
-          responsive: false,
+          responsive: true,
           maintainAspectRatio: false,
           animation: {
             duration: 3000,
@@ -128,8 +156,7 @@ fetchRecentCustomers() {
     }
   }
 
-
-    createStockChart() {
+  createStockChart() {
     this.chart = new Chart('stockChart', {
       type: 'bar',
       data: {
@@ -138,7 +165,13 @@ fetchRecentCustomers() {
           {
             type: 'bar',
             label: 'Total',
-            data: [this.stockCal.net_stock_twelve_kg, this.stockCal.net_stock_thirtyfive_kg, this.stockCal.net_stock_thirtythree_kg, this.stockCal.net_stock_thirtyfive_kg, this.stockCal.net_stock_fourtyfive_kg],
+            data: [
+              this.stockCal.net_stock_twelve_kg,
+              this.stockCal.net_stock_twentyfive_kg,
+              this.stockCal.net_stock_thirtythree_kg,
+              this.stockCal.net_stock_thirtyfive_kg,
+              this.stockCal.net_stock_fourtyfive_kg,
+            ],
             backgroundColor: ['#9966FF'],
             borderColor: ['white'],
             borderWidth: 1,
@@ -146,7 +179,13 @@ fetchRecentCustomers() {
           {
             type: 'bar',
             label: 'Total',
-            data: [this.stockCal.net_stock_empty_twelve_kg, this.stockCal.net_stock_empty_twentyfive_kg, this.stockCal.net_stock_empty_thirtythree_kg, this.stockCal.net_stock_empty_thirtyfive_kg, this.stockCal.net_stock_empty_fourtyfive_kg],
+            data: [
+              this.stockCal.net_stock_empty_twelve_kg,
+              this.stockCal.net_stock_empty_twentyfive_kg,
+              this.stockCal.net_stock_empty_thirtythree_kg,
+              this.stockCal.net_stock_empty_thirtyfive_kg,
+              this.stockCal.net_stock_empty_fourtyfive_kg,
+            ],
             backgroundColor: ['#36A2EB'],
             borderColor: ['white'],
             borderWidth: 1,
@@ -154,7 +193,7 @@ fetchRecentCustomers() {
         ],
       },
       options: {
-        responsive: false,
+        responsive: true,
         maintainAspectRatio: false,
         animation: {
           duration: 3000,
@@ -163,8 +202,6 @@ fetchRecentCustomers() {
       },
     });
   }
-
-
 
   // createChart() {
   //   this.chart = new Chart('MyChart', {
