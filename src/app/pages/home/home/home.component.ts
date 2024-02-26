@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
   NUMBER_CFG = { count: this.DATA_COUNT, min: 0, max: 100 };
   monthSale: number = 0
   todaySales: number = 0
+  cash: number = 0
   ngOnInit() {
     this.state();
     this.fetchlastStock();
@@ -40,6 +41,7 @@ export class HomeComponent implements OnInit {
     this.stockUpdate();
     this.thisMonthsSale();
     this.todaySale();
+    this.cashSale()
   }
 
   constructor(
@@ -56,6 +58,11 @@ export class HomeComponent implements OnInit {
   todaySale(){
     this.homeservice.todaySales().subscribe((res: any) => {
       this.todaySales = res
+    })
+  }
+  cashSale(){
+    this.homeservice.cashSale().subscribe((res: any) => {
+      this.cash = res
     })
   }
   fetchList() {
@@ -81,7 +88,6 @@ export class HomeComponent implements OnInit {
   fetchCustomer(event: any) {
     this.customersService.getCustomerList(event).subscribe((res: any) => {
       this.customer = res;
-      console.log(this.customer);
     });
   }
 

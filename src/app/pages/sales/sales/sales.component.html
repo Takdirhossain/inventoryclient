@@ -4,11 +4,11 @@
 
     <form [formGroup]="saleForm" (submit)="save()" >
 
-      <div class="modal-body">
+      <div class="">
         <div class="input-wrapper">
           <div>
             <label for="">12kg</label>
-            <input class="nameinput" formControlName="twelve_kg" placeholder="Filled" type="number" id="purpose" autocomplete="off"/>
+            <input  class="nameinput" formControlName="twelve_kg" placeholder="Filled" type="number" id="purpose" autocomplete="off"/>
           </div>
 
           <div>
@@ -52,24 +52,24 @@
 
           <div>
             <label for="">Price 12kg</label>
-            <input class="nameinput" (change)="suming($event )" formControlName="price_twelve_kg" placeholder="Price" type="number" id="purpose" autocomplete="off"/>
+            <input class="nameinput" (change)="suming($event, 'price_twelve_kg')" formControlName="price_twelve_kg" placeholder="Price" type="number" id="purpose" autocomplete="off"/>
           </div>
 
           <div>
             <label for="">Price 25kg</label>
-            <input class="nameinput" (change)="suming($event )" formControlName="price_twentyfive_kg" placeholder="Price" type="number"  id="amount" autocomplete="off"/>
+            <input class="nameinput" (change)="suming($event, 'price_twentyfive_kg')" formControlName="price_twentyfive_kg" placeholder="Price" type="number"  id="amount" autocomplete="off"/>
           </div>
           <div>
             <label for="">Price 33kg</label>
-            <input class="nameinput"  (change)="suming($event )" formControlName="price_thirtythree_kg" placeholder="Price" type="number" id="purpose"autocomplete="off"/>
+            <input class="nameinput" (change)="suming($event, 'price_thirtythree_kg')"  formControlName="price_thirtythree_kg" placeholder="Price" type="number" id="purpose"autocomplete="off"/>
           </div>
           <div>
             <label for="">Price 35kg</label>
-            <input class="nameinput" (change)="suming($event )"  formControlName="price_thirtyfive_kg" placeholder="Price" type="number" id="amount" autocomplete="off"/>
+            <input class="nameinput" (change)="suming($event, 'price_thirtyfive_kg')"   formControlName="price_thirtyfive_kg" placeholder="Price" type="number" id="amount" autocomplete="off"/>
           </div>
           <div>
             <label for="">Price 45kg</label>
-            <input class="nameinput"  (change)="suming($event )" placeholder="Price" formControlName="price_fourtyfive_kg" id="purpose" autocomplete="off"/>
+            <input class="nameinput" (change)="suming($event, 'price_fourtyfive_kg')"  placeholder="Price" formControlName="price_fourtyfive_kg" id="purpose" autocomplete="off"/>
           </div>
 
         </div>
@@ -93,15 +93,22 @@
           </div>
         </div>
         <div class="selectDate">
-          <div>
-            <label for="date">Date</label>
-            <input class="nameinput" formControlName="date" placeholder="Date" type="date" id="date" autocomplete="off" />
-            <div *ngIf="saleForm.get('date')?.touched">
-                <div class="form-error text-danger" *ngIf="dateControl?.hasError('required')">Date is required</div>
+          <div class="col-12 mt-4">
+            <div class="input-group">
+              <input
+                disabled
+                class="form-control"
+                placeholder="yyyy-mm-dd"
+                name="dp"
+               [defaultValue]="localDate"
+                ngbDatepicker
+                #d="ngbDatepicker"
+              />
+              <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
             </div>
+          </div>
         </div>
-        </div>
-        <label class="me-2" for="pokemon">Choose customer</label>
+        <label class="me-2 mt-4" for="pokemon">Choose customer</label>
         <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
         <div *ngIf="saleForm.get('customer_name')?.touched">
           <div class="form-error text-danger" *ngIf="saleForm.get('customer_name')?.hasError('required')">Customer name is required

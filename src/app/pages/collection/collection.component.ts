@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DailySales } from '../sales/models/dailySales.models';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { markFormAsTouched } from 'src/app/core/form.helper';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-collection',
@@ -21,9 +22,10 @@ export class CollectionComponent {
   customer:ApiResponse[] = []
   currentPage = 1;
   itemsPerPage = 100;
+  localDate:any
   private searchText = new Subject<string>();
   private searchByDate = new Subject<string>();
-  constructor(private customersService : CustomerService, private saleSarvice:SalesService, private toast: ToastrService){}
+  constructor(private datePipe:DatePipe, private customersService : CustomerService, private saleSarvice:SalesService, private toast: ToastrService){}
   ngOnInit(){
     this.fetchCustomer('')
     this.setup()
@@ -34,6 +36,7 @@ export class CollectionComponent {
     this.searchByDate
     .pipe(debounceTime(500), distinctUntilChanged())
     .subscribe((searchValue) => this.fetchList({ date: searchValue }));
+    this.getLocalDate();
   }
   setup(){
     const {required, pattern} = Validators
@@ -46,6 +49,11 @@ export class CollectionComponent {
      'customer_id': new FormControl('', required),
      'is_due_bill': new FormControl(true)
     })
+  }
+  getLocalDate(): void {
+    const currentDate = new Date();
+    this.localDate= this.datePipe.transform(currentDate, 'yyyy-MM-dd')!;
+    this.collectionForm?.get('date')?.setValue(this.localDate);
   }
   getValue(event: Event): string {
     return (event.target as HTMLInputElement).value;

@@ -1,3 +1,3 @@
 import {environment} from "../../environments/environment"
 
-export const API_URL = "http://localhost:8000/api";
+export const API_URL = "https://api.mohammadenterprise.xyz/public/api";

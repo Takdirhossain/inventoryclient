@@ -2,11 +2,11 @@
   <marquee><strong>Current Stock: <span >12KG {{stockCal.net_stock_twelve_kg}} </span> <span >25Kg {{stockCal.net_stock_twentyfive_kg}} </span> <span >33Kg {{stockCal.net_stock_thirtythree_kg}}</span> <span > 35Kg {{stockCal.net_stock_thirtyfive_kg}}</span> <span> 45kg   {{stockCal.net_stock_fourtyfive_kg}}</span> </strong></marquee>
   <div class="shortinfo mt-2">
     <div class="stocksort rounded">
-      <h3>Profit Today</h3>
-      <h4></h4>
+      <h3>Cash Today</h3>
+      <h4>{{this.cash}} TK</h4>
     </div>
     <div class="salesTodysort rounded">
-      <h3>Today sales</h3>
+      <h3>Today Sales</h3>
       <h4>{{todaySales}} TK</h4>
     </div>
     <div class="monthselshort rounded">
@@ -15,7 +15,7 @@
     </div>
     <div class="duemarketsort rounded">
       <h3>Total Due </h3>
-      <h4 *ngFor="let due of customer">{{due.total_due}} Tk</h4>
+      <h4 *ngFor="let due of customer">{{due.total_due}} TK</h4>
     </div>
   </div>
   <div class="home-wrapper pt-4">

@@ -1,4 +1,4 @@
-import { DecimalPipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { Component, PipeTransform, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { FormControl, FormGroup, NgSelectOption, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -38,7 +38,13 @@ export class SalesComponent implements OnInit  {
   selectedCustomerId: string = '';
   selectedCar: number = 0
   totaldue: any
-  constructor( private config: NgSelectConfig ,private toast: ToastrService ,private elementRef: ElementRef, private modalService: NgbModal, private saleSarvice:SalesService, private customersService : CustomerService) {
+  localDate:string= ''
+  telb_kg_previus: number = 0
+  twentyfive_kg_previus: number = 0
+  thirtythree_kg_previus: number = 0
+  fourtyfive_kg_previus: number = 0
+  thirtyfive_kg_previus: number = 0
+  constructor( private datePipe:DatePipe,private config: NgSelectConfig ,private toast: ToastrService ,private elementRef: ElementRef, private modalService: NgbModal, private saleSarvice:SalesService, private customersService : CustomerService) {
     this.config.notFoundText = 'Custom not found';
     this.config.appendTo = 'body';
     this.config.bindValue = 'value';
@@ -54,8 +60,13 @@ export class SalesComponent implements OnInit  {
     this.searchByDate
     .pipe(debounceTime(500), distinctUntilChanged())
     .subscribe((searchValue) => this.fetchList({ date: searchValue }));
+    this.getLocalDate();
   }
-
+  getLocalDate(): void {
+    const currentDate = new Date();
+    this.localDate= this.datePipe.transform(currentDate, 'yyyy-MM-dd')!;
+    this.saleForm?.get('date')?.setValue(this.localDate);
+  }
 
   setup(){
     const {required, pattern} = Validators
@@ -79,7 +90,7 @@ export class SalesComponent implements OnInit  {
      'price_fourtyfive_kg' : new FormControl('',),
      'price_others_kg' : new FormControl('',),
      'price': new FormControl(this.totalPrice, required),
-     'date' : new FormControl('', required),
+     'date' : new FormControl(''),
      'pay': new FormControl(''),
      'due' : new FormControl(this.due),
      'customer_name': new FormControl('', required),
@@ -88,15 +99,6 @@ export class SalesComponent implements OnInit  {
     })
   }
 
-   get dateControl() {
-    return this.saleForm.get('date');
-  }
-  formatDate(date: Date): string {
-      const day = date.getDate().toString().padStart(2, '0');
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const year = date.getFullYear();
-      return `${day}/${month}/${year}`;
-  }
   chooseCustomer(customer: any) {
    const id = customer.id
     this.totaldue = customer.due
@@ -104,19 +106,56 @@ export class SalesComponent implements OnInit  {
    this.saleForm?.get('customer_name')?.setValue(name);
    this.saleForm?.get('customer_id')?.setValue(id);
   }
-  totalPay($event:any){
+  totalPay($event:any, ){
     const amount = parseInt($event.target.value)
     const newDue = this.totalPrice - amount
     this.due = newDue
     this.saleForm?.get('due')?.setValue(this.due)
   }
-  suming($event: any){
-   const price = parseInt($event.target.value)
-   this.totalPrice = this.totalPrice + price
+  suming($event: any, inputLabel: any){
+    const price = parseInt($event.target.value)
+    if(inputLabel == "price_twelve_kg"){
+      const telb = this.saleForm?.get('twelve_kg')?.value;
+      const currentCalculate = telb * price;
+      const cal = this.totalPrice - this.telb_kg_previus
+      this.totalPrice = cal + currentCalculate;
+      this.telb_kg_previus = telb * price;
+    }
+    if(inputLabel == "price_twentyfive_kg"){
+      const telb = this.saleForm?.get('twentyfive_kg')?.value
+      const calculate = telb * price
+      const cal = this.totalPrice - this.twentyfive_kg_previus
+      this.totalPrice =cal + calculate
+      this.twentyfive_kg_previus = telb * price;
+    }
+
+    if(inputLabel == "price_thirtythree_kg"){
+      const telb = this.saleForm?.get('thirtythree_kg')?.value
+      const calculate = telb * price
+      const cal = this.totalPrice - this.thirtythree_kg_previus
+      this.totalPrice =cal + calculate
+      this.thirtythree_kg_previus = telb * price;
+    }
+    if(inputLabel == "price_thirtyfive_kg"){
+      const telb = this.saleForm?.get('thirtyfive_kg')?.value
+      const calculate = telb * price
+      const cal = this.totalPrice - this.thirtyfive_kg_previus
+      this.totalPrice =cal + calculate
+      this.thirtyfive_kg_previus = telb * price;
+    }
+
+    if(inputLabel == "price_fourtyfive_kg"){
+      const telb = this.saleForm?.get('fourtyfive_kg')?.value
+      const calculate = telb * price
+      const cal = this.totalPrice - this.fourtyfive_kg_previus
+      this.totalPrice =cal + calculate
+      this.fourtyfive_kg_previus = telb * price;
+    }
    this.saleForm?.get('price')?.setValue(this.totalPrice);
   }
 
   save(){
+    console.log(this.saleForm.value)
     markFormAsTouched(this.saleForm);
     if (this.saleForm.invalid) {
       return;

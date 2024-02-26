@@ -2,7 +2,7 @@
 <div class="job__search__form--container mt-3 form-wrapper">
 
   <form [formGroup]="collectionForm" (submit)="save()" >
-    <div class="modal-body">
+    <div class="">
       <label class="me-2" for="pokemon">Choose customer</label>
       <ng-select (change)="chooseCustomer($event)" [items]="customerList" bindLabel="name" autofocus bindValue="id"></ng-select>
       <div *ngIf="collectionForm.get('customer_name')?.touched">
@@ -18,13 +18,20 @@
       </div>
       </div>
       <div class="selectDate">
-        <div>
-          <label for="date">Date</label>
-          <input class="nameinput" formControlName="date" placeholder="Date" type="date" id="date" autocomplete="off" />
-          <div *ngIf="collectionForm.get('date')?.touched">
-              <div class="form-error text-danger" *ngIf="collectionForm.get('date')?.hasError('required')">Date is required</div>
+        <div class="col-12 mt-4">
+          <div class="input-group">
+            <input
+           disabled
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+             [defaultValue]="localDate"
+              ngbDatepicker
+              #d="ngbDatepicker"
+            />
+            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
           </div>
-      </div>
+        </div>
       </div>
     </div>
     <div class="add-button">

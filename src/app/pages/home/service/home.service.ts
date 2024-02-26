@@ -27,4 +27,7 @@ export class HomeService {
   recentSale(){
     return this.http.get(API_URL+ "/sales/recentSales")
   }
+  cashSale(){
+    return this.http.get(API_URL+ "/sales/cash")
+  }
 }
